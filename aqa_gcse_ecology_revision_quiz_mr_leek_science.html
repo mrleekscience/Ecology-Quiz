@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQA GCSE Ecology Revision Quiz — Mr Leek Science</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .option-card {
+      transition: all 0.16s ease;
+    }
+    .option-card:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+    .fade-in {
+      animation: fadeIn 0.22s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-100 text-slate-900">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <img
+          id="brandLogoImg"
+          src="mr leek science.jpg"
+          onerror="handleLogoFallback(this)"
+          alt="Mr Leek Science Logo"
+          class="h-12 sm:h-14 w-auto object-contain rounded-xl bg-white p-0.5 shadow-sm"
+        />
+        <div id="brandLogoFallback" class="hidden h-12 sm:h-14 w-12 sm:w-14 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white font-extrabold text-lg shadow-sm shrink-0">
+          MLS
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white leading-snug">
+            AQA GCSE Ecology Revision Quiz
+          </h1>
+          <p class="text-xs sm:text-sm text-teal-300 font-medium">
+            Mr Leek Science &bull; Paper 2 Topic 7 (AQA 8461 / 8464)
+          </p>
+        </div>
+      </div>
+
+      <div id="headerControls" class="hidden flex items-center gap-2 sm:gap-3">
+        <span id="headerStudentBadge" class="hidden sm:inline-flex items-center gap-1.5 bg-slate-800 text-slate-200 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span id="headerStudentName">Student</span>
+        </span>
+        <button
+          type="button"
+          onclick="confirmReturnHome()"
+          class="text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl border border-slate-700 transition"
+        >
+          Menu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- ==================== VIEW 1: START SCREEN ==================== -->
+    <section id="startScreen" class="fade-in">
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <!-- Top Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 px-6 py-6 sm:px-8 text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-teal-200 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2.5">
+            Topic 7 &bull; Paper 2 Revision (8461 &amp; 8464)
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Configure Your Ecology Revision Quiz
+          </h2>
+          <p class="text-slate-200 text-sm sm:text-base mt-1.5 max-w-2xl">
+            Enter your name, choose your tier, select either all Topic 7 content or Required Practicals only, and pick your question count.
+          </p>
+        </div>
+
+        <form id="quizSetupForm" onsubmit="handleStartQuiz(event)" novalidate class="p-6 sm:p-8 space-y-7">
+
+          <!-- 1. STUDENT DETAILS ROW -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div>
+              <label for="studentNameInput" class="block text-sm font-bold text-slate-800 mb-1.5">
+                Student Name <span class="text-rose-600 font-extrabold">*</span>
+              </label>
+              <input
+                type="text"
+                id="studentNameInput"
+                placeholder="Enter your full name"
+                maxlength="50"
+                autocomplete="name"
+                oninput="clearValidationError()"
+                class="w-full rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 px-4 py-3 text-slate-900 font-medium outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label for="studentEmailInput" class="block text-sm font-bold text-slate-800 mb-1.5">
+                Email Address <span class="text-slate-400 font-medium">(Optional)</span>
+              </label>
+              <input
+                type="email"
+                id="studentEmailInput"
+                placeholder="e.g. student@school.co.uk"
+                maxlength="80"
+                autocomplete="email"
+                class="w-full rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 px-4 py-3 text-slate-900 font-medium outline-none transition"
+              />
+            </div>
+          </div>
+
+          <!-- 2. SELECT TIER / PATHWAY -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-sm font-bold text-slate-800">Select Tier / Pathway</span>
+              <span id="tierCountHint" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
+                Higher Tier Selected
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5" id="tierSelectorGroup">
+              <!-- Foundation -->
+              <button
+                type="button"
+                data-tier="foundation"
+                onclick="selectTier('foundation')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-sky-100 text-sky-800 mb-1.5">
+                      Combined 8464
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Foundation Tier</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Core communities, biotic/abiotic factors, competition, adaptations, food chains, carbon &amp; water cycles, quadrats, biodiversity &amp; conservation (Grades 1–5).
+                </p>
+              </button>
+
+              <!-- Higher (Default Active) -->
+              <button
+                type="button"
+                data-tier="higher"
+                onclick="selectTier('higher')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-teal-600 bg-teal-50/60 shadow-sm transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-teal-100 text-teal-800 mb-1.5">
+                      Combined 8464
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Higher Tier</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-teal-600 bg-teal-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Includes Higher-tier predator-prey out-of-phase cycles, quadrat population estimations, eutrophication processes &amp; conflict evaluations (Grades 4–9).
+                </p>
+              </button>
+
+              <!-- Separate Biology -->
+              <button
+                type="button"
+                data-tier="separate"
+                onclick="selectTier('separate')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 mb-1.5">
+                      Triple 8461
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Separate Biology</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Full 8461 Triple content: Decomposition, RP10 Milk Decay, Trophic Levels, Pyramids of Biomass, 10% Biomass Transfer, Food Security &amp; Biotechnology (Grades 4–9).
+                </p>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. TOPIC FOCUS SELECTOR -->
+          <div>
+            <span class="block text-sm font-bold text-slate-800 mb-2.5">Topic Focus</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <!-- All Ecology Topics -->
+              <button
+                type="button"
+                id="modeAllBtn"
+                onclick="selectMode('all')"
+                class="text-left p-4 rounded-2xl border-2 border-teal-600 bg-teal-50/60 shadow-sm transition flex items-start gap-3.5"
+              >
+                <div id="modeAllIcon" class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-extrabold text-slate-900 text-sm sm:text-base">All Ecology Topics</h4>
+                    <span id="modeAllCheck" class="text-teal-600 font-extrabold text-sm">✓</span>
+                  </div>
+                  <p class="text-xs text-slate-600 mt-1">
+                    Covers adaptations &amp; competition, food chains, carbon &amp; water cycles, required practicals, biodiversity, human impacts &amp; tier exclusives.
+                  </p>
+                </div>
+              </button>
+
+              <!-- Dedicated Focus Box: Required Practicals Only -->
+              <button
+                type="button"
+                id="modePracticalBtn"
+                onclick="selectMode('practical')"
+                class="text-left p-4 rounded-2xl border-2 border-slate-200 bg-amber-50/40 hover:border-amber-400 transition flex items-start gap-3.5"
+              >
+                <div id="modePracticalIcon" class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3v4.5m4.5-4.5v4.5M6 7.5h12M7.5 7.5l-1.5 11.25A2.25 2.25 0 008.25 21h7.5a2.25 2.25 0 002.25-2.25L16.5 7.5" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-extrabold text-slate-900 text-sm sm:text-base">Required Practicals Only</h4>
+                    <span id="modePracticalCheck" class="hidden text-amber-600 font-extrabold text-sm">✓</span>
+                  </div>
+                  <p id="modePracticalDesc" class="text-xs text-slate-600 mt-1">
+                    Dedicated focus mode: RP9/7 random sampling with quadrats, population estimation maths &amp; systematic transect sampling along abiotic gradients.
+                  </p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. NUMBER OF QUESTIONS -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+              <span class="text-sm font-bold text-slate-800">Number of Questions</span>
+              <div class="flex items-center gap-2">
+                <span id="poolAvailabilityText" class="text-xs font-medium text-slate-500">
+                  84 unique questions available
+                </span>
+                <span id="cappedPoolBadge" class="hidden text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full border border-amber-300">
+                  Running max available
+                </span>
+              </div>
+            </div>
+            <div class="grid grid-cols-5 gap-2 sm:gap-3" id="countSelectorGroup">
+              <button type="button" data-count="10" onclick="selectCount(10)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                10
+              </button>
+              <button type="button" data-count="20" onclick="selectCount(20)" class="count-btn py-3 px-2 rounded-xl border-2 border-teal-600 bg-teal-600 text-white font-extrabold text-sm sm:text-base shadow-sm transition">
+                20
+              </button>
+              <button type="button" data-count="30" onclick="selectCount(30)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                30
+              </button>
+              <button type="button" data-count="50" onclick="selectCount(50)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                50
+              </button>
+              <button type="button" data-count="80" onclick="selectCount(80)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                80
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. BOTTOM ACTION FOOTER -->
+          <div class="pt-4 border-t border-slate-200 space-y-3">
+            <div id="validationAlert" class="hidden rounded-xl bg-rose-50 border border-rose-300 text-rose-800 px-4 py-3 text-sm font-semibold flex items-center gap-2">
+              <svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
+              <span>Please enter your Student Name before starting the quiz.</span>
+            </div>
+
+            <button
+              type="submit"
+              id="startQuizBtn"
+              class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-extrabold text-base sm:text-lg shadow-lg shadow-teal-600/20 transition transform active:scale-[0.99] flex items-center justify-center gap-2"
+            >
+              <span id="startBtnLabel">Start Higher Tier Quiz (20 Questions)</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: ACTIVE QUIZ ==================== -->
+    <section id="quizScreen" class="hidden fade-in space-y-5">
+      <!-- Progress & Metadata Header -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="quizTierBadge" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800">
+              Higher Tier
+            </span>
+            <span id="quizTopicBadge" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">
+              Adaptations &amp; Competition
+            </span>
+            <span id="quizFocusBadge" class="hidden text-xs font-extrabold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300">
+              Required Practical
+            </span>
+          </div>
+
+          <div class="flex items-center gap-4 text-sm font-bold text-slate-700">
+            <span id="questionCounterText">Question 1 of 20</span>
+            <span class="text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200">
+              Score: <span id="liveScoreText">0</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-300" style="width: 5%;"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200">
+        <h3 id="questionPrompt" class="text-lg sm:text-xl font-bold text-slate-900 leading-relaxed mb-6">
+          Loading question...
+        </h3>
+
+        <!-- Options List -->
+        <div id="optionsContainer" class="space-y-3"></div>
+
+        <!-- Instant AQA Mark-Scheme Feedback Box -->
+        <div id="feedbackBox" class="hidden mt-6 rounded-2xl p-5 border-2 fade-in">
+          <div class="flex items-start gap-3">
+            <div id="feedbackIcon" class="w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0 mt-0.5"></div>
+            <div class="flex-1">
+              <h4 id="feedbackHeading" class="font-extrabold text-base"></h4>
+              <p id="feedbackExplanation" class="text-sm mt-1.5 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <div class="mt-5 flex justify-end">
+            <button
+              type="button"
+              id="nextQuestionBtn"
+              onclick="handleNextQuestion()"
+              class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base transition flex items-center gap-2 shadow"
+            >
+              <span id="nextBtnText">Next Question</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: DIAGNOSTIC REPORT ==================== -->
+    <section id="resultsScreen" class="hidden fade-in space-y-6">
+      <!-- Summary Hero Card -->
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <div class="bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 p-6 sm:p-8 text-white">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <span class="inline-block text-xs font-bold uppercase tracking-wider bg-white/15 text-teal-200 px-3 py-1 rounded-full mb-2">
+                AQA GCSE Ecology Diagnostic Report
+              </span>
+              <h2 id="reportStudentTitle" class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Diagnostic Report: Student
+              </h2>
+              <p id="reportMetaSubtitle" class="text-sm text-slate-200 mt-1">
+                Higher Tier &bull; All Ecology Topics
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-center">
+                <div id="reportPercentage" class="text-3xl sm:text-4xl font-extrabold text-emerald-300">
+                  0%
+                </div>
+                <div id="reportFraction" class="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
+                  0 / 20 Correct
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3.5 text-center">
+                <div id="reportGradeBadge" class="text-2xl sm:text-3xl font-extrabold text-amber-300">
+                  Grade 5
+                </div>
+                <div class="text-[11px] font-semibold text-slate-200 mt-0.5 uppercase tracking-wide">
+                  Est. Grade
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons Row -->
+        <div class="p-5 sm:p-6 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            id="retryMissedBtn"
+            onclick="startMissedQuestionsQuiz()"
+            class="hidden px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-sm shadow-sm transition flex items-center gap-2"
+          >
+            <span>Retry Missed Questions (<span id="missedCountLabel">0</span>)</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="copyResultsSummary()"
+            class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm shadow-sm transition flex items-center gap-2"
+          >
+            <span id="copyBtnLabel">Copy Results Summary</span>
+          </button>
+
+          <a
+            id="emailResultsLink"
+            href="#"
+            class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-sm transition flex items-center gap-2"
+          >
+            <span>Email Results</span>
+          </a>
+
+          <button
+            type="button"
+            onclick="returnToMenu()"
+            class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-sm transition ml-auto"
+          >
+            Start New Quiz
+          </button>
+        </div>
+
+        <!-- Topic-by-Topic Breakdown -->
+        <div class="p-6 sm:p-8">
+          <h3 class="text-lg font-extrabold text-slate-900 mb-1">Topic-by-Topic Performance Breakdown</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mb-5">
+            Identify your strongest areas in Ecology (&ge;70%) and prioritise topics needing further revision (&lt;70%).
+          </p>
+          <div id="topicBreakdownContainer" class="space-y-4"></div>
+        </div>
+      </div>
+
+      <!-- Question Review List -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 sm:p-8">
+        <h3 class="text-lg font-extrabold text-slate-900 mb-4">Question-by-Question Review</h3>
+        <div id="questionReviewList" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- Custom In-App Confirmation Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+        <h3 class="text-lg font-extrabold text-slate-900">Return to Quiz Menu?</h3>
+        <p class="text-sm text-slate-600 mt-2">
+          Your current quiz progress will be lost if you return to the start screen.
+        </p>
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="button" onclick="closeConfirmModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm">
+            Continue Quiz
+          </button>
+          <button type="button" onclick="returnToMenu()" class="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm">
+            Yes, Exit Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-5 mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <span class="font-semibold text-slate-700">Mr Leek Science &bull; AQA GCSE Biology (8461 &amp; 8464)</span>
+      <span>Paper 2 &bull; Topic 7: Ecology Revision Platform</span>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 0. LOGO FALLBACK HANDLER
+    // =========================================================================
+    function handleLogoFallback(img) {
+      if (!img.dataset.triedFallback) {
+        img.dataset.triedFallback = 'true';
+        img.src = 'mrleeksciencelogo.png';
+      } else {
+        img.classList.add('hidden');
+        const fallbackBadge = document.getElementById('brandLogoFallback');
+        if (fallbackBadge) fallbackBadge.classList.remove('hidden');
+      }
+    }
+
+    // =========================================================================
+    // 1. COMPREHENSIVE 108-QUESTION AQA TOPIC 7 ECOLOGY QUESTION BANK
+    //    Schema: { id, topic, tier: 'foundation'|'higher'|'separate', isRequiredPractical, q, options, answer, explanation }
+    //    Filtering rules:
+    //      - 'foundation': tier === 'foundation'
+    //      - 'higher': tier === 'foundation' || tier === 'higher'
+    //      - 'separate': tier === 'foundation' || tier === 'higher' || tier === 'separate'
+    // =========================================================================
+    const QUESTION_BANK = [
+      // -------------------- SUBTOPIC 1: ADAPTATIONS, INTERDEPENDENCE & COMPETITION (20) --------------------
+      {
+        id: 1,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'In GCSE Ecology, what is the correct definition of an "ECOSYSTEM"?',
+        options: [
+          'The interaction of a community of living organisms (biotic) with the non-living (abiotic) parts of their environment',
+          'All the individuals of a single species living in one woodland',
+          'Only the non-living physical conditions such as temperature and soil pH',
+          'A food chain showing four trophic levels'
+        ],
+        answer: 0,
+        explanation: 'An ecosystem encompasses both the living community (biotic components) and the non-living physical environment (abiotic components) interacting together.'
+      },
+      {
+        id: 2,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Define the ecological terms HABITAT, POPULATION, and COMMUNITY.',
+        options: [
+          'Habitat: the place where an organism lives; Population: all organisms of one species in a habitat; Community: all the populations of different species living and interacting in a habitat',
+          'Habitat: all species in a forest; Population: the non-living soil; Community: a single animal',
+          'Habitat: a food web; Population: all plants on Earth; Community: bacteria in the soil',
+          'Habitat: the climate of a country; Population: number of predators; Community: number of prey'
+        ],
+        answer: 0,
+        explanation: 'Individuals make up a population (one species); multiple populations living together in a habitat form a community.'
+      },
+      {
+        id: 3,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What is meant by "INTERDEPENDENCE" within a community?',
+        options: [
+          'Each species depends on other species for things such as food, shelter, pollination, and seed dispersal; if one species is removed, it can affect the whole community',
+          'Every organism in a habitat can survive completely alone without any other species',
+          'Predators and prey always stay at the exact same population size',
+          'Plants depend only on rocks and never interact with animals or fungi'
+        ],
+        answer: 0,
+        explanation: 'Species within a community are interconnected through feeding, pollination, seed dispersal, and shelter; removing one species causes knock-on effects across the food web.'
+      },
+      {
+        id: 4,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What is a "STABLE COMMUNITY"?',
+        options: [
+          'One where all the species and environmental factors are in balance so that population sizes remain fairly constant over time',
+          'One where all predators have been hunted to extinction',
+          'One where only one species of plant is allowed to grow',
+          'One where temperature never changes by even 0.1 °C'
+        ],
+        answer: 0,
+        explanation: 'In a stable community (such as an ancient oak woodland or tropical rainforest), biotic and abiotic factors balance out so population sizes fluctuate only slightly around a steady mean.'
+      },
+      {
+        id: 5,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which four resources do PLANTS often compete with each other for in a habitat?',
+        options: [
+          'Light, space, water, and mineral ions from the soil',
+          'Food (prey), mates, territory, and oxygen',
+          'Carbon dioxide, glucose, insulin, and blood plasma',
+          'Predators, pathogens, soil pH, and wind speed'
+        ],
+        answer: 0,
+        explanation: 'Plants compete for light (for photosynthesis), space (for root and canopy growth), water, and soil mineral ions (such as nitrates and magnesium).'
+      },
+      {
+        id: 6,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which three main resources do ANIMALS often compete with each other for?',
+        options: [
+          'Food, mates, and territory',
+          'Light, mineral ions, and carbon dioxide',
+          'Chlorophyll, cellulose, and starch',
+          'Wind speed, rainfall, and soil pH'
+        ],
+        answer: 0,
+        explanation: 'Animals compete for food, sexual mates (for reproduction), and territory (which provides shelter, mates, and food).'
+      },
+      {
+        id: 7,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which list contains ONLY ABIOTIC (non-living) factors that can affect a community?',
+        options: [
+          'Light intensity, temperature, moisture levels, soil pH and mineral content, wind intensity and direction, carbon dioxide levels (for plants), and oxygen levels (for aquatic animals)',
+          'Availability of food, new predators arriving, new pathogens, and one species outcompeting another',
+          'Temperature, number of foxes, soil pH, and oak tree density',
+          'Light intensity, fungal disease, rainfall, and competition for mates'
+        ],
+        answer: 0,
+        explanation: 'Abiotic factors are non-living physical or chemical environmental conditions.'
+      },
+      {
+        id: 8,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which list contains ONLY BIOTIC (living) factors that can affect a community?',
+        options: [
+          'Availability of food, new predators arriving, new pathogens, and one species outcompeting another so numbers are no longer sufficient to breed',
+          'Soil pH, moisture levels, light intensity, and temperature',
+          'Wind intensity, oxygen concentration in water, and carbon dioxide concentration',
+          'Rainfall, altitude, and rock mineral content'
+        ],
+        answer: 0,
+        explanation: 'Biotic factors arise from living organisms: food availability, predation, disease/pathogens, and interspecific competition.'
+      },
+      {
+        id: 9,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Grey squirrels were introduced to the UK from North America and outcompeted native red squirrels for food and woodland habitat. What type of factor caused the decline in red squirrels?',
+        options: [
+          'A biotic factor (interspecific competition—and a parapoxvirus pathogen carried by grey squirrels)',
+          'An abiotic factor (change in soil pH)',
+          'An abiotic factor (increase in wind direction)',
+          'A decrease in atmospheric oxygen'
+        ],
+        answer: 0,
+        explanation: 'Interspecific competition from grey squirrels (plus squirrelpox virus, also biotic) reduced red squirrel breeding numbers.'
+      },
+      {
+        id: 10,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Organisms have features (adaptations) that enable them to survive in the conditions in which they normally live. What are the THREE categories of adaptations in AQA Biology?',
+        options: [
+          'Structural, behavioural, and functional adaptations',
+          'Photosynthetic, respiratory, and digestive adaptations',
+          'Genetic, environmental, and fossilised adaptations',
+          'Biotic, abiotic, and climatic adaptations'
+        ],
+        answer: 0,
+        explanation: 'Adaptations are classified as structural (body shape/colour/anatomy), behavioural (actions/migrations/basking), or functional (internal physiological/biochemical processes).'
+      },
+      {
+        id: 11,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Classify these three adaptations of a desert camel or kangaroo rat: (1) Producing very small volumes of concentrated urine; (2) Large, flat feet to spread weight on sand; (3) Resting in cool underground burrows during the hottest part of the day.',
+        options: [
+          '(1) Functional; (2) Structural; (3) Behavioural',
+          '(1) Structural; (2) Behavioural; (3) Functional',
+          '(1) Behavioural; (2) Functional; (3) Structural',
+          'All three are structural adaptations'
+        ],
+        answer: 0,
+        explanation: 'Kidney water conservation is physiological/functional; wide foot anatomy is structural; shelter-seeking behaviour is behavioural.'
+      },
+      {
+        id: 12,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How are cacti adapted to survive in hot, dry desert environments?',
+        options: [
+          'Leaves reduced to spines (reducing surface area for water loss by transpiration and deterring herbivores), thick waxy cuticle, swollen fleshy stem to store water, and widespread shallow roots to absorb rare rainfall quickly',
+          'Broad, thin leaves with thousands of open stomata on the upper surface',
+          'No roots and thin stems with no waxy cuticle',
+          'Dark black fur covering the stem to absorb maximum heat'
+        ],
+        answer: 0,
+        explanation: 'Desert xerophytes minimise transpiration via spines and thick cuticles while maximising water storage and rapid surface absorption.'
+      },
+      {
+        id: 13,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How do Arctic animals (such as polar bears and Arctic foxes) reduce heat transfer to their freezing surroundings?',
+        options: [
+          'A low surface area to volume ratio (compact, rounded body shape and small ears), thick layers of insulating blubber/fat beneath the skin, and thick white fur that traps insulating air and provides camouflage',
+          'A very large surface area to volume ratio with huge thin ears',
+          'No subcutaneous fat and very thin dark fur',
+          'Sweating continuously throughout the winter'
+        ],
+        answer: 0,
+        explanation: 'A compact body minimises surface area relative to volume (reducing heat loss per unit mass), aided by thick fur and blubber insulation.'
+      },
+      {
+        id: 14,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What is an "EXTREMOPHILE"?',
+        options: [
+          'An organism (often bacteria or archaea) adapted to live in extreme environments—such as very high temperatures, high pressures, or high salt concentrations',
+          'Any mammal that lives in a temperate garden',
+          'A predator at the top of a woodland food chain',
+          'A plant that grows only in fertile farm soil'
+        ],
+        answer: 0,
+        explanation: 'Extremophiles thrive under extreme abiotic conditions (e.g. deep-sea hydrothermal vents at >100 °C or hypersaline lakes).'
+      },
+      {
+        id: 15,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Why do thermophilic bacteria living in deep-sea volcanic hydrothermal vents (at temperatures around 95 °C) survive, whereas human cells would die immediately?',
+        options: [
+          'Extremophile bacteria possess specially adapted heat-stable enzymes whose active sites have a higher optimum temperature (~90–100 °C) and do not denature at high temperatures',
+          'Extremophile bacteria do not use enzymes for respiration or metabolism',
+          'Water at the bottom of the ocean freezes at 95 °C',
+          'Human cells contain too much chlorophyll'
+        ],
+        answer: 0,
+        explanation: 'Thermophilic proteins have stronger intramolecular bonds (e.g. extra disulfide bridges) that maintain active-site 3D shape at high temperatures.'
+      },
+      {
+        id: 16,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Why is INTRASPECIFIC competition (competition between individuals of the SAME species) usually even more intense than INTERSPECIFIC competition (between different species)?',
+        options: [
+          'Individuals of the exact same species have identical ecological niches, so they require the exact same food, shelter, territory, and mates at the exact same time',
+          'Individuals of the same species never share a habitat',
+          'Different species always cooperate and share all food equally',
+          'Intraspecific competition only occurs in plants, never in animals'
+        ],
+        answer: 0,
+        explanation: 'Complete niche overlap among conspecifics creates direct competition for every single resource.'
+      },
+      {
+        id: 17,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Swallows migrate thousands of miles from the UK to southern Africa every autumn and return in spring. What type of adaptation is seasonal migration?',
+        options: ['Behavioural adaptation', 'Structural adaptation', 'Functional adaptation', 'Abiotic adaptation'],
+        answer: 0,
+        explanation: 'Migration is an inherited behavioural pattern that avoids harsh winter food shortages.'
+      },
+      {
+        id: 18,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Venomous snakes produce toxic venom in modified salivary glands to immobilise prey. What type of adaptation is producing venom?',
+        options: ['Functional adaptation', 'Behavioural adaptation', 'Abiotic factor', 'Photosynthetic adaptation'],
+        answer: 0,
+        explanation: 'Synthesis of biochemical toxins/venom is an internal physiological (functional) adaptation.'
+      },
+      {
+        id: 19,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'How does a decrease in dissolved oxygen concentration in a river (an abiotic factor) affect the aquatic community?',
+        options: [
+          'Aerobic aquatic organisms with high oxygen demands (such as trout and mayfly nymphs) suffocate and die or migrate away, leaving only organisms tolerant of low oxygen (such as bloodworms and sludge worms)',
+          'Aquatic plants photosynthesise ten times faster without dissolved oxygen',
+          'Dissolved oxygen has no effect on fish because fish breathe nitrogen',
+          'All river bacteria become extinct immediately'
+        ],
+        answer: 0,
+        explanation: 'Low dissolved oxygen restricts aerobic respiration in active aquatic invertebrates and fish, shifting community composition.'
+      },
+      {
+        id: 20,
+        topic: 'Adaptations, Interdependence & Competition',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Why do woodland bluebells flower and grow leaves early in spring (March–April) before the tall oak and beech trees grow their full leaf canopy?',
+        options: [
+          'To avoid competition for light, allowing bluebells to absorb sunlight for photosynthesis before the dense tree canopy shades the woodland floor',
+          'Because bluebells cannot survive temperatures above 10 °C',
+          'Because soil nitrates only exist in March',
+          'To avoid being eaten by polar bears'
+        ],
+        answer: 0,
+        explanation: 'Temporal niche separation lets spring ephemerals complete photosynthesis and flowering before canopy closure.'
+      },
+
+      // -------------------- SUBTOPIC 2: ORGANISATION OF AN ECOSYSTEM, CARBON & WATER CYCLES (20) --------------------
+      {
+        id: 21,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What is the source of energy for almost all communities of living organisms on Earth, and which organisms capture it?',
+        options: [
+          'The Sun (light energy), captured by photosynthetic organisms (green plants and algae) which are the PRODUCERS of biomass for life on Earth',
+          'Geothermal heat from rocks, captured by primary consumers',
+          'Chemical energy from soil nitrates, captured by apex predators',
+          'Wind energy, captured by fungal decomposers'
+        ],
+        answer: 0,
+        explanation: 'Producers (plants and algae) convert light energy from the Sun into chemical energy in glucose/biomass via photosynthesis.'
+      },
+      {
+        id: 22,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'In the food chain: Oak leaf → Caterpillar → Blue tit → Sparrowhawk, which organism is the SECONDARY CONSUMER?',
+        options: ['Blue tit', 'Oak leaf', 'Caterpillar', 'Sparrowhawk'],
+        answer: 0,
+        explanation: 'Oak leaf = producer; Caterpillar = primary consumer; Blue tit = secondary consumer; Sparrowhawk = tertiary consumer.'
+      },
+      {
+        id: 23,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What do the arrows in a food chain or food web represent?',
+        options: [
+          'The direction of transfer of biomass (and energy) from one organism to the next when it is eaten',
+          'Which organism chases and kills the other',
+          'The flow of water from roots to leaves',
+          'The direction of wind blowing across a habitat'
+        ],
+        answer: 0,
+        explanation: 'Arrows always point from the organism being eaten to the organism eating it, showing biomass/energy transfer.'
+      },
+      {
+        id: 24,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'In a stable community, how do the population sizes of a PREDATOR (e.g. lynx) and its PREY (e.g. snowshoe hare) change over time?',
+        options: [
+          'The numbers of predators and prey rise and fall in cycles, with the predator population peaks and troughs lagging slightly behind the prey population peaks and troughs',
+          'Both populations increase endlessly in a straight line forever',
+          'The predator population is always larger than the prey population',
+          'When prey numbers fall, predator numbers rise sharply'
+        ],
+        answer: 0,
+        explanation: 'More prey provides abundant food so predator numbers rise; increased predation then reduces prey numbers, causing predator numbers to fall after a time lag.'
+      },
+      {
+        id: 25,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'On a predator-prey graph, why does the predator peak always occur AFTER (to the right of) the prey peak?',
+        options: [
+          'There is a time lag needed for predators to eat the abundant prey, reproduce, and raise their offspring to adulthood before the predator population size increases',
+          'Predators hibernate for 5 years every time they eat',
+          'Prey animals turn into predators when they get old',
+          'Predators only eat plants when prey numbers are high'
+        ],
+        answer: 0,
+        explanation: 'Gestation, birth, and maturation introduce a demographic delay between increased food availability and higher predator population counts.'
+      },
+      {
+        id: 26,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Why is the cycling of materials (such as carbon and water) essential in the living world?',
+        options: [
+          'All materials in the living world are recycled to provide the building blocks for future organisms, preventing finite elements from running out',
+          'Because atoms are created from nothing inside plant leaves every spring',
+          'Because decomposers destroy all carbon atoms permanently',
+          'Because water disappears into space every year'
+        ],
+        answer: 0,
+        explanation: 'Earth is a closed system for matter; biogeochemical cycles return carbon, mineral ions, and water to the environment for reuse by new generations.'
+      },
+      {
+        id: 27,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which ONE biological process REMOVES carbon dioxide from the atmosphere in the CARBON CYCLE?',
+        options: [
+          'Photosynthesis by green plants and algae (converting CO₂ into glucose and biomass)',
+          'Aerobic respiration by animals and plants',
+          'Combustion of fossil fuels and wood',
+          'Decay/decomposition by microorganisms'
+        ],
+        answer: 0,
+        explanation: 'Photosynthesis is the sole biological carbon-fixation process removing atmospheric CO₂ into organic carbon compounds.'
+      },
+      {
+        id: 28,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which THREE processes RETURN carbon dioxide to the atmosphere in the CARBON CYCLE?',
+        options: [
+          'Respiration (by plants, animals, and microorganisms/decomposers), combustion (burning wood and fossil fuels), and volcanic activity',
+          'Photosynthesis, transpiration, and osmosis',
+          'Evaporation, condensation, and precipitation',
+          'Mitosis, meiosis, and fertilisation'
+        ],
+        answer: 0,
+        explanation: 'Cellular respiration across all kingdoms (including microbial decomposers) and combustion release CO₂ back into the air.'
+      },
+      {
+        id: 29,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What role do MICROORGANISMS (bacteria and fungi) play in cycling materials through an ecosystem?',
+        options: [
+          'They act as decomposers: breaking down dead organisms and animal waste, releasing carbon dioxide back into the atmosphere via respiration and returning mineral ions (such as nitrates) to the soil for plants to absorb',
+          'They carry out photosynthesis in deep underground caves',
+          'They prevent dead leaves from ever rotting',
+          'They eat living lions and eagles'
+        ],
+        answer: 0,
+        explanation: 'Decomposers digest dead organic matter, respiring carbon back as CO₂ and mineralising nutrients into the soil.'
+      },
+      {
+        id: 30,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How are FOSSIL FUELS (coal, oil, and natural gas) formed in the carbon cycle?',
+        options: [
+          'Over millions of years, dead plants and animals in conditions where decay was prevented (e.g. anaerobic swamps or seabed sediments) were compressed under high temperature and pressure, locking carbon away',
+          'By bacteria respiring inside compost heaps over 2 weeks',
+          'By rainwater dissolving limestone rocks',
+          'By plants absorbing nitrogen gas through their stomata'
+        ],
+        answer: 0,
+        explanation: 'Incomplete decay under anaerobic, high-pressure geological conditions fossilises organic carbon into coal, crude oil, and natural gas.'
+      },
+      {
+        id: 31,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Put the four main stages of the WATER CYCLE in order starting from liquid water in the oceans heated by the Sun:',
+        options: [
+          'Evaporation (and transpiration from plants) → Condensation (forming clouds) → Precipitation (rain, snow, hail) → Percolation/surface runoff back into rivers and oceans',
+          'Precipitation → Condensation → Evaporation → Transpiration',
+          'Condensation → Evaporation → Runoff → Transpiration',
+          'Photosynthesis → Respiration → Combustion → Fossilisation'
+        ],
+        answer: 0,
+        explanation: 'Solar heating drives evaporation and plant transpiration; rising water vapour cools and condenses into clouds, falling as precipitation to replenish freshwater and oceans.'
+      },
+      {
+        id: 32,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How does the WATER CYCLE provide fresh water for plants and animals on land before it drains into the seas?',
+        options: [
+          'Evaporation from salty oceans leaves dissolved salts behind; the pure water vapour condenses and falls over land as fresh-water precipitation (rain/snow)',
+          'Fish pump fresh water up through underground pipes',
+          'Sea salt evaporates into clouds and turns into glucose',
+          'Trees filter seawater through their leaves'
+        ],
+        answer: 0,
+        explanation: 'Evaporation acts as natural solar distillation, supplying freshwater rainfall to terrestrial ecosystems.'
+      },
+      {
+        id: 33,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Why do tropical rainforests have very thin, nutrient-poor topsoil despite supporting enormous lush plant biomass?',
+        options: [
+          'Warm, moist conditions allow decomposers to break down dead leaves almost immediately, and the dense network of tree roots rapidly absorbs the released mineral ions before heavy rain washes them away',
+          'Tropical rainforests have no bacteria or fungi',
+          'Rainforest trees do not require any mineral ions to grow',
+          'Low temperatures freeze the soil all year round'
+        ],
+        answer: 0,
+        explanation: 'Rapid decomposition and immediate root uptake keep nutrients locked in living biomass rather than accumulating in soil.'
+      },
+      {
+        id: 34,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'When a herbivore (such as a rabbit) eats grass, how does the carbon in the grass become part of the rabbit’s body?',
+        options: [
+          'The rabbit digests starch/proteins from the grass into glucose and amino acids, absorbs them, and uses them to synthesise rabbit carbohydrates, fats, and proteins',
+          'The rabbit absorbs carbon dioxide through its fur',
+          'Grass chloroplasts move directly into the rabbit’s muscles',
+          'The rabbit’s stomach turns grass into fossil fuel'
+        ],
+        answer: 0,
+        explanation: 'Feeding transfers organic carbon compounds along food chains, where digestion and assimilation build consumer biomass.'
+      },
+      {
+        id: 35,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'In the water cycle, what is "TRANSPIRATION"?',
+        options: [
+          'The loss of water vapour from plant leaves (mainly through open stomata) into the atmosphere',
+          'The absorption of mineral ions by root hair cells',
+          'The freezing of water droplets inside clouds',
+          'The flow of river water into the sea'
+        ],
+        answer: 0,
+        explanation: 'Plants absorb soil water through roots and release water vapour back to the atmosphere via transpiration.'
+      },
+      {
+        id: 36,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Explain why atmospheric carbon dioxide concentration fluctuates slightly between summer and winter in the Northern Hemisphere.',
+        options: [
+          'In summer, longer daylight hours and warmer temperatures increase the rate of photosynthesis by trees and crops (removing more CO₂), whereas in winter deciduous trees lose their leaves and photosynthesis drops while respiration continues',
+          'Volcanoes only erupt in winter',
+          'Animals stop respiring completely during summer',
+          'Oceans freeze solid in summer'
+        ],
+        answer: 0,
+        explanation: 'Seasonal changes in Northern Hemisphere terrestrial leaf area drive annual oscillations in global CO₂ (the Keeling curve sawtooth).'
+      },
+      {
+        id: 37,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'In a marine food chain: Phytoplankton → Zooplankton → Herring → Seal → Killer whale, which organism is the PRODUCER?',
+        options: ['Phytoplankton (microscopic photosynthetic algae)', 'Zooplankton', 'Herring', 'Killer whale'],
+        answer: 0,
+        explanation: 'Phytoplankton are photosynthetic algae forming the base of aquatic food webs.'
+      },
+      {
+        id: 38,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'If a disease wiped out all the frogs in a pond food web (Algae → Tadpole → Frog → Heron), what would be the immediate effect on the tadpole and heron populations?',
+        options: [
+          'Tadpole numbers would increase (fewer frogs eating them), while heron numbers would decrease (loss of a major food source)',
+          'Both tadpole and heron numbers would increase',
+          'Both tadpole and heron numbers would decrease',
+          'Algae would stop photosynthesising'
+        ],
+        answer: 0,
+        explanation: 'Removing a secondary consumer releases primary consumers from predation while reducing food availability for tertiary consumers.'
+      },
+      {
+        id: 39,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Why do real ecosystems have complex FOOD WEBS rather than isolated single food chains?',
+        options: [
+          'Most consumers eat more than one type of food organism and are eaten by more than one predator, creating interconnected feeding relationships that buffer the ecosystem against the loss of a single species',
+          'Because plants eat animals at night',
+          'Because decomposers only eat apex predators',
+          'Because food chains only exist in laboratories'
+        ],
+        answer: 0,
+        explanation: 'Dietary flexibility creates trophic redundancy, increasing community stability.'
+      },
+      {
+        id: 40,
+        topic: 'Organisation of an Ecosystem, Carbon & Water Cycles',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which process in plants releases carbon dioxide into the air both day and night?',
+        options: ['Respiration', 'Photosynthesis', 'Transpiration', 'Osmosis'],
+        answer: 0,
+        explanation: 'Plants respire continuously 24 hours a day to release energy from glucose, producing CO₂.'
+      },
+
+      // -------------------- SUBTOPIC 3: REQUIRED PRACTICALS: QUADRATS, TRANSECTS & DECAY (24) --------------------
+      {
+        id: 41,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'In Required Practical 9 (Combined) / RP7 (Separate), what is a QUADRAT, and what types of organisms is it used to sample?',
+        options: [
+          'A square frame (typically 0.5 m × 0.5 m = 0.25 m²) placed on the ground to sample stationary or slow-moving organisms such as plants (e.g. daisies, dandelions) and slow animals (e.g. limpets, barnacles)',
+          'A net used to catch fast-flying birds and butterflies',
+          'A thermometer used to measure cloud temperature',
+          'A microscope slide used to count human red blood cells'
+        ],
+        answer: 0,
+        explanation: 'Quadrats are square sampling frames suitable for sessile plants/algae or slow-moving invertebrates.'
+      },
+      {
+        id: 42,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'When estimating the total population size of daisies in a large school playing field, how must the quadrat positions be chosen to avoid BIAS?',
+        options: [
+          'Randomly—for example by dividing the field into a grid with tape measures and using a random number generator to pick (x, y) coordinates',
+          'By deliberately throwing the quadrat onto the patches with the most daisies',
+          'By placing all quadrats in a single straight line next to the school building',
+          'By choosing only spots where the grass is shortest'
+        ],
+        answer: 0,
+        explanation: 'Random coordinate generation eliminates subjective human bias when estimating population abundance across a uniform habitat.'
+      },
+      {
+        id: 43,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'A student uses a 0.5 m × 0.5 m quadrat (area = 0.25 m²) to sample dandelions on a rectangular field measuring 40 m by 25 m. Across 20 random quadrats, the mean number of dandelions per quadrat is 3.5. Estimate the total dandelion population on the field.',
+        options: ['14,000 dandelions', '3,500 dandelions', '700 dandelions', '28,000 dandelions'],
+        answer: 0,
+        explanation: 'Total field area = 40 × 25 = 1000 m². Quadrat area = 0.25 m² (so 4 quadrats = 1 m²). Mean per m² = 3.5 × 4 = 14. Total = 14 × 1000 = 14,000.'
+      },
+      {
+        id: 44,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'How can a student make their quadrat estimate of the dandelion population on a field MORE ACCURATE (valid and representative)?',
+        options: [
+          'Place a larger number of random quadrats (e.g. 30 instead of 5) across the entire field before calculating the mean',
+          'Use a smaller quadrat and sample only once',
+          'Count only the largest flowers in each quadrat',
+          'Sample only on a rainy day'
+        ],
+        answer: 0,
+        explanation: 'Increasing sample size reduces the impact of anomalous patchy distributions and improves the accuracy of the sample mean.'
+      },
+      {
+        id: 45,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'When should a scientist use SYSTEMATIC SAMPLING along a TRANSECT LINE (a tape measure stretched across a habitat) rather than random sampling?',
+        options: [
+          'When investigating how the distribution or abundance of organisms changes across an environmental gradient (such as moving from under a shady tree into open sunlight, or up a rocky seashore)',
+          'When estimating the total number of buttercups in a completely flat, uniform meadow',
+          'When counting fast-swimming fish in a deep lake',
+          'When measuring the pH of milk in a test tube'
+        ],
+        answer: 0,
+        explanation: 'Belt/line transects sample at regular intervals along an abiotic gradient (light, moisture, salinity, trampling).'
+      },
+      {
+        id: 46,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'In a required practical investigating how light intensity affects the distribution of clover moving away from a large oak tree, what is the INDEPENDENT variable, DEPENDENT variable, and how is each measured?',
+        options: [
+          'Independent: distance from the tree / light intensity (measured with a tape measure and light meter); Dependent: abundance/percentage cover of clover (measured using a quadrat placed at regular intervals along the transect)',
+          'Independent: number of clover plants; Dependent: height of the oak tree',
+          'Independent: temperature of the soil; Dependent: wind speed',
+          'Independent: quadrat size; Dependent: time of day'
+        ],
+        answer: 0,
+        explanation: 'Distance/light intensity along the transect is varied systematically, while plant abundance (count or % cover) in each quadrat is recorded.'
+      },
+      {
+        id: 47,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'higher',
+        isRequiredPractical: true,
+        q: 'When sampling grass or moss using a 10 × 10 grid quadrat, why do ecologists measure PERCENTAGE COVER rather than counting individual plants?',
+        options: [
+          'Because individual grass or moss plants are intertwined and very numerous, making it almost impossible to tell where one individual plant ends and another begins',
+          'Because grass does not contain chlorophyll',
+          'Because percentage cover requires zero equipment',
+          'Because counting individual plants is illegal in national parks'
+        ],
+        answer: 0,
+        explanation: 'Clonal/mat-forming plants lack distinct individual shoots, so counting grid squares (>50% occupied) gives a reliable percentage cover estimate.'
+      },
+      {
+        id: 48,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'higher',
+        isRequiredPractical: true,
+        q: 'A student records the number of plantain plants in 10 quadrats placed along a trampled footpath: 12, 10, 14, 11, 12, 9, 13, 12, 11, 16. What are the MEAN, MEDIAN, and MODE of these results?',
+        options: [
+          'Mean = 12.0; Median = 12.0; Mode = 12',
+          'Mean = 120; Median = 11; Mode = 16',
+          'Mean = 11.5; Median = 12.5; Mode = 10',
+          'Mean = 12.0; Median = 10.5; Mode = 14'
+        ],
+        answer: 0,
+        explanation: 'Sum = 120 ÷ 10 = 12.0 (mean). Ordered: 9, 10, 11, 11, 12, 12, 12, 13, 14, 16 → middle values are 12 and 12 (median = 12.0). Most frequent = 12 (mode).'
+      },
+      {
+        id: 49,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'During a quadrat count, several dandelions lie partly on the metal edge of the quadrat frame. What rule should the student follow to ensure consistent, repeatable measurements?',
+        options: [
+          'Decide on a consistent rule before starting—for example, count plants touching the top and left edges of the quadrat, and ignore plants touching the bottom and right edges',
+          'Count all edge plants only when the number seems too low',
+          'Never count any plant near the edge even if it is completely inside',
+          'Guess a random number between 1 and 10'
+        ],
+        answer: 0,
+        explanation: 'Applying a fixed boundary rule (e.g. include top/left borders, exclude bottom/right borders) prevents systematic overcounting or undercounting.'
+      },
+      {
+        id: 50,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'higher',
+        isRequiredPractical: true,
+        q: 'In a transect investigation from a shaded woodland edge into an open field, a student notices that BOTH light intensity AND soil moisture change with distance from the trees. Why is this a limitation when interpreting the data?',
+        options: [
+          'Because in field investigations multiple abiotic factors vary simultaneously, so it is harder to be certain whether the change in plant distribution is caused solely by light intensity or also by soil moisture',
+          'Because light meters cannot be used outdoors',
+          'Because quadrats cannot be placed on damp soil',
+          'Because trees absorb all nitrogen from the air'
+        ],
+        answer: 0,
+        explanation: 'Unlike controlled lab experiments, field transects involve covarying abiotic gradients, limiting causal certainty.'
+      },
+      {
+        id: 51,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'In a transect survey up a rocky sea shore from the low-tide mark to the high-tide mark, seaweed species X is abundant near the low-tide mark (0–4 m) but completely absent above 6 m. Suggest the main abiotic reason.',
+        options: [
+          'Higher up the shore the seaweed is exposed to the air for longer periods between high tides, risking drying out (desiccation) and extreme temperature changes',
+          'There is no sunlight above 6 m on a beach',
+          'Seaweed is eaten by polar bears above 6 m',
+          'Oxygen cannot dissolve in air'
+        ],
+        answer: 0,
+        explanation: 'Emersion time increases up the intertidal zone, exposing organisms to desiccation and thermal stress.'
+      },
+      {
+        id: 52,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'foundation',
+        isRequiredPractical: true,
+        q: 'When using a handheld electronic light meter along a transect under trees, what precaution should the student take so readings are valid?',
+        options: [
+          'Stand to the side so they do not cast their own shadow over the light sensor, hold the sensor flat at ground/plant level, and take readings at the same time of day',
+          'Cover the sensor with their hand for 10 seconds before reading',
+          'Point the sensor straight down into the soil',
+          'Take half the readings at noon and half at midnight'
+        ],
+        answer: 0,
+        explanation: 'Avoiding body shadows and maintaining consistent sensor orientation and timing prevents measurement error.'
+      },
+      // Separate Biology RP10 (Effect of temperature on rate of decay of fresh milk) — 12 questions
+      {
+        id: 53,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In Separate Biology Required Practical 10 (investigating the effect of temperature on the rate of decay of fresh milk), why is LIPASE enzyme added to the milk in the school experiment?',
+        options: [
+          'Lipase rapidly breaks down lipids (fats) in the milk into glycerol and fatty acids, speeding up the acidification process so the colour change can be measured within a single school lesson',
+          'Lipase turns the milk into solid butter so it can be weighed',
+          'Lipase kills all bacteria in the test tube',
+          'Lipase produces oxygen gas bubbles that are counted'
+        ],
+        answer: 0,
+        explanation: 'Natural bacterial decay of milk takes days; adding lipase models microbial enzyme secretion and releases fatty acids within minutes.'
+      },
+      {
+        id: 54,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In Separate Biology RP10 (milk decay), why is SODIUM CARBONATE solution added to the milk and Cresol Red (or phenolphthalein) indicator at the start?',
+        options: [
+          'Sodium carbonate makes the mixture alkaline (purple with Cresol Red / pink with phenolphthalein); as lipase breaks down fats into fatty acids, the pH drops and the indicator changes colour (to yellow with Cresol Red / colourless with phenolphthalein)',
+          'Sodium carbonate acts as a food source for the lipase enzyme',
+          'Sodium carbonate keeps the temperature constant at 35 °C',
+          'Sodium carbonate neutralises all fatty acids permanently'
+        ],
+        answer: 0,
+        explanation: 'Sodium carbonate establishes an initial alkaline pH so the indicator starts brightly coloured and shifts distinctly once fatty acids lower the pH.'
+      },
+      {
+        id: 55,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In RP10 (milk decay), why should the test tube of milk + sodium carbonate + indicator AND the separate test tube of lipase solution be placed in the water bath for 5 minutes BEFORE mixing them together?',
+        options: [
+          'To allow both solutions to equilibrate to the exact target temperature of the water bath before the reaction starts',
+          'To give bacteria time to divide by binary fission',
+          'To evaporate half of the water from the milk',
+          'To denature the lipase enzyme before adding it'
+        ],
+        answer: 0,
+        explanation: 'Equilibrating reagents separately ensures the reaction proceeds at the intended temperature from t = 0.'
+      },
+      {
+        id: 56,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In RP10 (milk decay), at 35 °C the indicator changes from purple to yellow in 50 seconds. Calculate the RATE of reaction (in s⁻¹) using Rate = 1 ÷ time.',
+        options: ['0.02 s⁻¹', '50 s⁻¹', '0.5 s⁻¹', '0.002 s⁻¹'],
+        answer: 0,
+        explanation: 'Rate = 1 ÷ 50 s = 0.02 s⁻¹.'
+      },
+      {
+        id: 57,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In RP10 (milk decay), what happens to the rate of decay when the water bath temperature is raised from 10 °C to 35 °C, and what happens if it is raised to 75 °C?',
+        options: [
+          'From 10 °C to 35 °C the rate increases (more kinetic energy, more frequent successful enzyme-substrate collisions); at 75 °C the rate drops to zero because the lipase enzyme is denatured (active site changes shape)',
+          'The rate keeps increasing in a straight line all the way to 100 °C',
+          'At 10 °C the enzyme is denatured, and at 75 °C it works fastest',
+          'Temperature has no effect on the time taken for the colour change'
+        ],
+        answer: 0,
+        explanation: 'Enzyme-catalysed reactions show an optimum around 35–40 °C and cease at high temperatures due to thermal denaturation.'
+      },
+      {
+        id: 58,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'Identify FOUR control variables that must be kept constant in RP10 (milk decay) to ensure a valid investigation.',
+        options: [
+          'Volume and type (fat content) of milk, volume and concentration of sodium carbonate solution, volume and concentration of lipase solution, and volume/type of pH indicator',
+          'Temperature of the water bath and time taken for the colour change',
+          'Room air pressure, brand of stopwatch, and colour of the lab coat',
+          'Number of quadrats and length of the transect tape'
+        ],
+        answer: 0,
+        explanation: 'Reagent volumes, concentrations, and milk fat content must all be held constant so temperature is the sole independent variable.'
+      },
+      {
+        id: 59,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In RP10 (milk decay), judging the exact moment the indicator finishes changing colour from purple to yellow is subjective. How can a student reduce this source of random error?',
+        options: [
+          'Place a control comparison tube (containing already-yellow reacted mixture or water + yellow indicator) next to the reaction tube as a colour standard, and repeat each temperature three times to calculate a mean (excluding anomalies)',
+          'Use a different indicator for every temperature tested',
+          'Turn off all the lights in the laboratory',
+          'Skip temperatures between 20 °C and 50 °C'
+        ],
+        answer: 0,
+        explanation: 'A visual colour-endpoint standard tube and repeat trials improve precision and reproducibility.'
+      },
+      {
+        id: 60,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'Why must FULL-FAT milk (or semi-skimmed milk) be used in RP10 rather than completely fat-free skimmed milk?',
+        options: [
+          'Lipase breaks down fats (lipids) into fatty acids; if no fat is present in the milk, no fatty acids will be produced and the indicator will never change colour',
+          'Skimmed milk is already yellow in colour',
+          'Lipase only digests lactose sugar in full-fat milk',
+          'Skimmed milk boils at 25 °C'
+        ],
+        answer: 0,
+        explanation: 'Lipids are the substrate for lipase; without triglycerides, fatty acid acidification cannot occur.'
+      },
+      {
+        id: 61,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In RP10, why should the contents of the reaction tube be stirred gently with a clean glass rod immediately after adding the lipase?',
+        options: [
+          'To mix the lipase enzyme evenly throughout the milk and sodium carbonate so collisions occur uniformly and the colour changes evenly rather than only at the top',
+          'To add oxygen gas from the air into the fat molecules',
+          'To cool the milk down to 0 °C',
+          'To break the glass test tube'
+        ],
+        answer: 0,
+        explanation: 'Uniform mixing ensures homogeneous enzyme-substrate contact and an even pH transition.'
+      },
+      {
+        id: 62,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'A student runs RP10 at 20 °C and gets times of 124 s, 126 s, and 125 s. At 40 °C the times are 38 s, 40 s, and 42 s. Calculate the mean rate of reaction at 40 °C (in s⁻¹).',
+        options: ['0.025 s⁻¹', '40 s⁻¹', '0.008 s⁻¹', '2.5 s⁻¹'],
+        answer: 0,
+        explanation: 'Mean time at 40 °C = (38 + 40 + 42) ÷ 3 = 40 s. Rate = 1 ÷ 40 = 0.025 s⁻¹.'
+      },
+      {
+        id: 63,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'In RP10, if a student forgets to rinse the glass stirring rod between a tube containing lipase at 35 °C and a tube at 5 °C, what error will occur?',
+        options: [
+          'Lipase transferred on the unwashed rod will start digesting the 5 °C milk early before the timer starts, making the recorded time shorter and the calculated rate artificially too high',
+          'The 5 °C tube will instantly boil',
+          'The sodium carbonate will turn into hydrochloric acid',
+          'No error will occur because enzymes cannot stick to glass'
+        ],
+        answer: 0,
+        explanation: 'Cross-contamination with active enzyme initiates lipid hydrolysis prematurely before timing begins.'
+      },
+      {
+        id: 64,
+        topic: 'Required Practicals: Quadrats, Transects & Decay',
+        tier: 'separate',
+        isRequiredPractical: true,
+        q: 'Why does fresh milk kept in a domestic refrigerator at 4 °C stay fresh much longer than milk left on a warm kitchen worktop at 22 °C?',
+        options: [
+          'At 4 °C, decomposer bacteria reproduce much more slowly and their extracellular digestive enzymes (such as lipase) have low kinetic energy, resulting in very slow lipid breakdown and souring',
+          'At 4 °C, all bacteria in milk are killed by freezing',
+          'Refrigerators remove all oxygen from inside milk cartons',
+          'At 22 °C, milk photosynthesises and produces acid'
+        ],
+        answer: 0,
+        explanation: 'Refrigeration slows bacterial binary fission and enzyme-substrate collision rates without necessarily killing the bacteria.'
+      },
+
+      // -------------------- SUBTOPIC 4: BIODIVERSITY & HUMAN IMPACT ON ECOSYSTEMS (20) --------------------
+      {
+        id: 65,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What is "BIODIVERSITY", and why is a high level of biodiversity important for the future of the human species?',
+        options: [
+          'The variety of all the different species of organisms on Earth, or within an ecosystem; great biodiversity ensures the stability of ecosystems by reducing the dependence of one species on another for food, shelter, and maintenance of the physical environment',
+          'The total number of humans living in cities; it prevents earthquakes',
+          'Having only one high-yielding crop species across the whole planet',
+          'The amount of carbon dioxide dissolved in the oceans'
+        ],
+        answer: 0,
+        explanation: 'High biodiversity buffers ecosystems against disturbance and underpins food, medicine, pollination, and climate stability for humans.'
+      },
+      {
+        id: 66,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Why are human activities currently producing more waste and pollution than ever before?',
+        options: [
+          'Rapid growth in the human population and an increase in the standard of living mean more resources are used and more waste is produced; unless waste and chemical materials are properly handled, more pollution will be caused',
+          'Because humans have stopped recycling all metals and plastics',
+          'Because plants have stopped absorbing carbon dioxide',
+          'Because the Earth’s gravity has decreased'
+        ],
+        answer: 0,
+        explanation: 'Exponential population growth combined with higher per-capita consumption drives resource extraction and waste generation.'
+      },
+      {
+        id: 67,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Identify the main pollutants affecting (1) WATER, (2) AIR, and (3) LAND ecosystems.',
+        options: [
+          '(1) Water: sewage, fertiliser, or toxic chemicals; (2) Air: smoke and acidic gases (such as sulfur dioxide); (3) Land: landfill and toxic chemicals (such as pesticides and herbicides)',
+          '(1) Water: oxygen and nitrogen; (2) Air: water vapour; (3) Land: earthworms and humus',
+          '(1) Water: smoke; (2) Air: sewage; (3) Land: ozone',
+          'None of these pollutants affect biodiversity'
+        ],
+        answer: 0,
+        explanation: 'AQA categorises pollution across water (sewage, fertilisers, toxic effluents), air (particulate smoke, SO₂/NOx), and land (landfill, agrochemicals).'
+      },
+      {
+        id: 68,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Explain step-by-step how excess nitrate/phosphate FERTILISERS or untreated SEWAGE washed into a lake cause EUTROPHICATION and kill fish.',
+        options: [
+          '1. Excess nitrates/nutrients stimulate rapid algal growth ("algal bloom"); 2. Dense surface algae block sunlight from reaching deeper aquatic plants, which die; 3. Decomposer bacteria multiply rapidly feeding on dead plants/algae and carry out aerobic respiration, using up dissolved oxygen; 4. Fish and aquatic animals suffocate due to lack of oxygen',
+          '1. Fertilisers directly freeze the lake water; 2. Fish cannot swim through ice',
+          '1. Algae eat all the fish directly; 2. Bacteria turn into algae',
+          '1. Sewage raises water pH to 14; 2. Fish dissolve'
+        ],
+        answer: 0,
+        explanation: 'Eutrophication is driven by microbial aerobic respiration depleting dissolved oxygen after an algal bloom shades out submerged macrophytes.'
+      },
+      {
+        id: 69,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How do humans reduce the amount of land available for other animals and plants?',
+        options: [
+          'By building, quarrying, farming, and dumping waste',
+          'By planting native woodlands and creating nature reserves',
+          'By recycling glass and aluminium cans',
+          'By generating electricity from offshore wind turbines'
+        ],
+        answer: 0,
+        explanation: 'AQA specifies four human land-use pressures: building, quarrying, farming, and waste disposal.'
+      },
+      {
+        id: 70,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What are PEAT BOGS, and why does the destruction of peat bogs to produce garden compost harm both biodiversity and the climate?',
+        options: [
+          'Peat bogs are waterlogged, acidic carbon stores where partially decayed plants accumulate over thousands of years; draining/destroying them reduces the area of this unique habitat (decreasing biodiversity) and exposes peat to oxygen so microorganisms decompose it and release large amounts of carbon dioxide (and burning peat as fuel also releases CO₂)',
+          'Peat bogs are dry deserts; destroying them creates new rainforests',
+          'Peat bogs absorb all oxygen from the air; destroying them increases biodiversity',
+          'Peat is made of plastic waste dumped by farmers'
+        ],
+        answer: 0,
+        explanation: 'Peatlands are vital carbon sinks and specialist habitats; peat extraction destroys biodiversity and accelerates CO₂ emissions via aerobic microbial decay.'
+      },
+      {
+        id: 71,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What are the TWO main reasons why large-scale DEFORESTATION has occurred in tropical areas?',
+        options: [
+          'To provide land for cattle and rice fields (agriculture), and to grow crops from which biofuels can be produced',
+          'To build underwater cities and extract ocean salt',
+          'To increase global oxygen levels and cool the planet',
+          'To protect endangered orangutans and jaguars'
+        ],
+        answer: 0,
+        explanation: 'AQA states tropical deforestation is carried out primarily to clear land for cattle/rice farming and to grow biofuel crops.'
+      },
+      {
+        id: 72,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How does large-scale DEFORESTATION contribute to global warming and loss of biodiversity?',
+        options: [
+          'Fewer trees remain to absorb CO₂ by photosynthesis ("carbon sink" is lost), burning/decomposing felled timber releases large amounts of CO₂ into the atmosphere, and destroying forest habitats causes extinction of many species',
+          'Cutting down trees increases the rate of global photosynthesis',
+          'Deforestation removes all methane and CO₂ from the atmosphere',
+          'Deforestation increases the number of habitats for forest animals'
+        ],
+        answer: 0,
+        explanation: 'Deforestation both reduces photosynthetic CO₂ uptake and releases stored biomass carbon while fragmenting/destroying biodiverse habitats.'
+      },
+      {
+        id: 73,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Which two GASES are increasing in the atmosphere due to human activities and are the primary drivers of GLOBAL WARMING?',
+        options: [
+          'Carbon dioxide and methane',
+          'Oxygen and nitrogen',
+          'Helium and argon',
+          'Hydrogen and neon'
+        ],
+        answer: 0,
+        explanation: 'Carbon dioxide (from fossil fuel combustion and deforestation) and methane (from cattle farming, rice paddy fields, and landfill) trap infrared radiation in the atmosphere.'
+      },
+      {
+        id: 74,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Identify FOUR biological consequences of GLOBAL WARMING on ecosystems and living organisms.',
+        options: [
+          'Loss of habitat (e.g. melting polar ice caps and coastal flooding from rising sea levels), changes in the distribution of species (animals/plants shifting towards poles or higher altitudes), changes to bird migration patterns, and reduced biodiversity as species unable to adapt become extinct',
+          'Rapid expansion of polar ice sheets and permanent freezing of all oceans',
+          'Increased biodiversity in coral reefs and polar regions',
+          'Plants stopping respiration completely'
+        ],
+        answer: 0,
+        explanation: 'AQA highlights habitat loss, shifts in species geographical distributions, altered migration timing/routes, and biodiversity decline.'
+      },
+      {
+        id: 75,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'State FIVE programmes and actions that scientists and citizens have put in place to reduce the negative effects of humans on ecosystems and maintain biodiversity.',
+        options: [
+          '1. Breeding programmes for endangered species; 2. Protection and regeneration of rare habitats (such as coral reefs, mangroves, and heathland); 3. Reintroduction of field margins and hedgerows in agricultural areas where farmers grow only one type of crop; 4. Reduction of deforestation and carbon dioxide emissions by some governments; 5. Recycling resources rather than dumping waste in landfill',
+          '1. Draining all peat bogs; 2. Increasing pesticide spraying; 3. Burning more coal; 4. Clearing all hedgerows; 5. Dumping sewage in rivers',
+          '1. Hunting apex predators; 2. Introducing invasive species; 3. Building on nature reserves',
+          '1. Using peat compost exclusively; 2. Importing exotic pets from rainforests'
+        ],
+        answer: 0,
+        explanation: 'These are the five exact conservation strategies specified in AQA GCSE Biology.'
+      },
+      {
+        id: 76,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Why does reintroducing HEDGEROWS and uncultivated FIELD MARGINS around monoculture crop fields increase farmland biodiversity?',
+        options: [
+          'They provide habitats, shelter, and wildflower food sources for insects (pollinators), birds, and small mammals that cannot survive in a single-crop field',
+          'Hedgerows absorb all oxygen from the crop field',
+          'Field margins prevent rainwater from reaching the soil',
+          'Hedgerows kill all earthworms in the soil'
+        ],
+        answer: 0,
+        explanation: 'Field margins and hedgerows act as wildlife corridors and refuges supporting pollinators, natural pest predators, and farmland birds.'
+      },
+      {
+        id: 77,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Why can there be a conflict between the desire to protect peat bogs (or reduce fertiliser use) and the pressures of food production and economics?',
+        options: [
+          'Farmers and gardeners want cheap, high-yielding compost/fertilisers to grow affordable food and maximise profits, whereas conservationists want to protect habitats and reduce carbon/nitrate pollution even if food/compost becomes more expensive',
+          'There is no conflict because peat is completely free and unlimited',
+          'Fertilisers reduce crop yields by 90%',
+          'Conservationists want to destroy all farmland'
+        ],
+        answer: 0,
+        explanation: 'Higher Tier questions frequently ask candidates to evaluate socio-economic trade-offs between agricultural productivity/cost and environmental conservation.'
+      },
+      {
+        id: 78,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'How does ACID RAIN form from burning fossil fuels containing sulfur impurities, and how does it damage ecosystems?',
+        options: [
+          'Sulfur dioxide (and nitrogen oxides) dissolves in atmospheric moisture to form acidic rain, which acidifies lakes (killing fish and invertebrates), damages tree leaves, and leaches toxic aluminium ions from soil',
+          'Carbon dioxide turns into solid salt inside clouds',
+          'Methane freezes raindrops into hailstones',
+          'Acid rain increases soil pH to 12, making plants grow too fast'
+        ],
+        answer: 0,
+        explanation: 'SO₂ and NOx react with water vapour to form sulfuric and nitric acids, harming freshwater and forest ecosystems.'
+      },
+      {
+        id: 79,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Why is RECYCLING materials (such as metals, paper, glass, and plastics) important for maintaining biodiversity?',
+        options: [
+          'It reduces the amount of waste dumped in landfill sites (saving land habitat for wildlife) and reduces the need for destructive quarrying, mining, and deforestation to extract raw materials',
+          'It increases the size of landfill sites',
+          'It turns plastic bottles into living animals',
+          'It produces sulfur dioxide gas'
+        ],
+        answer: 0,
+        explanation: 'Recycling conserves finite resources, cuts landfill habitat destruction, and lowers energy/carbon emissions.'
+      },
+      {
+        id: 80,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'How can CAPTIVE BREEDING PROGRAMMES in zoos help prevent the extinction of endangered species, and what genetic challenge must they manage?',
+        options: [
+          'They breed endangered animals safely away from poachers/habitat loss to increase population numbers before reintroduction into protected habitats; they must maintain studbooks to avoid inbreeding and preserve genetic diversity',
+          'They clone animals using bacterial plasmids so all individuals are genetically identical',
+          'They release animals immediately into deforested cities',
+          'They breed endangered animals with domestic dogs'
+        ],
+        answer: 0,
+        explanation: 'Captive breeding boosts numbers under controlled care while carefully managing matings to prevent inbreeding depression.'
+      },
+      {
+        id: 81,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'What is "BIOACCUMULATION" when toxic chemicals (such as mercury or persistent pesticides like DDT) enter a food chain?',
+        options: [
+          'Toxic substances that cannot be broken down or excreted build up in the tissues of organisms and become increasingly concentrated at each higher trophic level, poisoning top predators',
+          'Plants break down toxic chemicals into harmless oxygen',
+          'Top predators excrete 100% of toxins immediately',
+          'Toxins only affect producers and never reach consumers'
+        ],
+        answer: 0,
+        explanation: 'Persistent non-biodegradable toxins biomagnify up trophic levels because predators consume many contaminated prey organisms.'
+      },
+      {
+        id: 82,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Why can burning wood or crop-based BIOFUELS be considered "carbon neutral" in principle, yet still cause environmental harm if tropical rainforests are cleared to grow them?',
+        options: [
+          'The CO₂ released when burning biofuels equals the CO₂ absorbed while the crop grew, but clearing rainforests destroys biodiverse habitats and releases centuries of stored forest carbon',
+          'Biofuels release pure oxygen when burned in car engines',
+          'Biofuels can only be made from coal and crude oil',
+          'Rainforest trees do not absorb any carbon dioxide'
+        ],
+        answer: 0,
+        explanation: 'Land-use change (deforestation for palm oil or biofuel plantations) creates a huge carbon debt and severe biodiversity loss.'
+      },
+      {
+        id: 83,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'higher',
+        isRequiredPractical: false,
+        q: 'Why are lichens on tree bark and aquatic invertebrates (such as mayfly nymphs vs bloodworms) useful as "INDICATOR SPECIES" of pollution?',
+        options: [
+          'Different species have different tolerances to air sulfur dioxide or water oxygen levels, so their presence or absence provides a biological measure of pollution levels over time',
+          'They change colour to display exact pH numbers',
+          'They eat all the pollutants in a river within 1 hour',
+          'They only live in polluted environments'
+        ],
+        answer: 0,
+        explanation: 'Bioindicators reflect cumulative environmental conditions: clean-water invertebrates require high O₂, while bushy lichens are sensitive to SO₂.'
+      },
+      {
+        id: 84,
+        topic: 'Biodiversity & Human Impact on Ecosystems',
+        tier: 'foundation',
+        isRequiredPractical: false,
+        q: 'Besides burning fossil fuels, which two agricultural sources release large quantities of METHANE into the atmosphere?',
+        options: [
+          'Cattle farming (digestive fermentation in cows) and flooded rice paddy fields (anaerobic bacteria)',
+          'Growing apple orchards and wheat fields',
+          'Keeping honeybees and chickens',
+          'Planting hedgerows and oak trees'
+        ],
+        answer: 0,
+        explanation: 'Methanogenic archaea/bacteria in ruminant guts and waterlogged rice paddies produce methane, a potent greenhouse gas.'
+      },
+
+      // -------------------- SUBTOPIC 5: DECOMPOSITION, TROPHIC LEVELS & FOOD PRODUCTION — SEPARATE BIOLOGY ONLY 8461 (24) --------------------
+      {
+        id: 85,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'In Separate Biology (8461), what are the THREE main environmental factors that affect the RATE OF DECAY of biological material?',
+        options: [
+          'Temperature, water (moisture), and availability of oxygen',
+          'Light intensity, wind direction, and soil pH',
+          'Atmospheric nitrogen, gravity, and sound waves',
+          'Chlorophyll concentration, salinity, and pressure'
+        ],
+        answer: 0,
+        explanation: 'Decomposer bacteria and fungi require warmth (for enzyme activity), moisture (for reactions and transport), and oxygen (for aerobic respiration).'
+      },
+      {
+        id: 86,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'How do gardeners and farmers provide OPTIMUM CONDITIONS for rapid decay in a compost bin to produce natural fertiliser?',
+        options: [
+          'Keep the compost moist, provide air holes/turn the heap to supply oxygen for aerobic respiration, and insulate the bin so heat from microbial respiration warms it up (without overheating and denaturing enzymes)',
+          'Seal the bin completely airtight, freeze it to -10 °C, and dry out all plant waste',
+          'Pour strong hydrochloric acid and bleach over the grass clippings',
+          'Keep the compost submerged under deep salt water'
+        ],
+        answer: 0,
+        explanation: 'Aeration, moisture retention, and thermal insulation maximise aerobic microbial decomposition and mineral nutrient release.'
+      },
+      {
+        id: 87,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'What is a BIOGAS GENERATOR, and under what conditions do microorganisms produce biogas (mainly methane) from waste plant/animal material (Separate Biology 8461)?',
+        options: [
+          'A sealed vessel where microorganisms carry out ANAEROBIC DECAY (without oxygen) of animal manure or plant waste, producing methane gas that can be burned as a fuel for heating, cooking, or generating electricity',
+          'An open compost heap where bacteria produce pure oxygen gas',
+          'A solar panel that turns water into petrol',
+          'A greenhouse where plants produce methane by photosynthesis'
+        ],
+        answer: 0,
+        explanation: 'Anaerobic digestion in an airtight digester produces biogas (~50–70% methane) plus nutrient-rich digestate slurry.'
+      },
+      {
+        id: 88,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'In Separate Biology (8461), what are TROPHIC LEVELS, and what organisms occupy Trophic Level 1, 2, 3, and 4?',
+        options: [
+          'Feeding positions in a food chain: Level 1 = Producers (plants/algae); Level 2 = Primary consumers (herbivores); Level 3 = Secondary consumers (carnivores eating herbivores); Level 4 = Tertiary consumers (carnivores eating other carnivores)',
+          'Level 1 = Apex predators; Level 2 = Secondary consumers; Level 3 = Primary consumers; Level 4 = Producers',
+          'Level 1 = Decomposers; Level 2 = Sunlight; Level 3 = Soil; Level 4 = Water',
+          'Trophic levels measure the height of trees in metres'
+        ],
+        answer: 0,
+        explanation: 'Trophic levels represent sequential steps in energy/biomass transfer starting with producers at Level 1.'
+      },
+      {
+        id: 89,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'What is an "APEX PREDATOR" (Separate Biology 8461)?',
+        options: [
+          'A carnivore with NO predators above it in its food chain/web',
+          'A herbivore that eats only producers',
+          'A bacterium that decomposes dead leaves',
+          'A plant that traps insects'
+        ],
+        answer: 0,
+        explanation: 'Apex predators occupy the highest trophic level in a food chain and are not preyed upon by other animals.'
+      },
+      {
+        id: 90,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'How do DECOMPOSERS (bacteria and fungi) break down dead plant and animal matter externally (Separate Biology 8461)?',
+        options: [
+          'They secrete extracellular digestive enzymes into the environment (dead matter) to digest complex insoluble molecules into small soluble food molecules (such as glucose and amino acids), which then diffuse into the microorganisms',
+          'They swallow whole dead animals through a mouth and stomach',
+          'They use photosynthesis to turn dead wood into sunlight',
+          'They dissolve dead animals using hydrochloric acid from human stomachs'
+        ],
+        answer: 0,
+        explanation: 'Saprotrophic decomposers carry out extracellular digestion, secreting enzymes onto organic matter and absorbing soluble products by diffusion.'
+      },
+      {
+        id: 91,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'What does a PYRAMID OF BIOMASS represent, and what is always true about its shape (Separate Biology 8461)?',
+        options: [
+          'It represents the relative dry mass of living material (biomass) at each trophic level; Trophic Level 1 (producers) is always at the bottom, and each bar gets narrower going up because biomass decreases at every trophic level',
+          'It shows the number of individual organisms; it is always wider at the top than at the bottom',
+          'It shows the height of animals in centimetres',
+          'Apex predators are always placed at the bottom of the pyramid'
+        ],
+        answer: 0,
+        explanation: 'Because energy/biomass is lost at every transfer, pyramids of biomass are always upright with producers forming the widest base.'
+      },
+      {
+        id: 92,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'Approximately what percentage of the incident light energy falling on green plants is transferred into biomass by photosynthesis, and approximately what percentage of biomass is transferred from one trophic level to the next?',
+        options: [
+          'Producers transfer ~1% of incident light energy into biomass; approximately 10% of biomass is transferred from each trophic level to the trophic level above it',
+          'Producers transfer 90% of light energy; 90% of biomass is transferred at each trophic level',
+          'Producers transfer 50% of light energy; 50% of biomass is transferred at each trophic level',
+          'Producers transfer 0.001% of light energy; 100% of biomass is transferred between animals'
+        ],
+        answer: 0,
+        explanation: 'AQA specifies ~1% photosynthetic efficiency of incident sunlight and ~10% biomass transfer efficiency between consecutive trophic levels.'
+      },
+      {
+        id: 93,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'State THREE reasons why ~90% of biomass is LOST between one trophic level and the next (explaining why food chains rarely have more than 4 or 5 trophic levels) (Separate Biology 8461).',
+        options: [
+          '1. Not all ingested material is absorbed—some is egested as faeces; 2. Some absorbed material is lost as waste products, such as carbon dioxide and water in respiration, and water and urea in urine; 3. Large amounts of glucose are used in respiration to supply energy for movement and keeping body temperature constant (heat loss)',
+          '1. Predators never eat any part of their prey; 2. Animals carry out photosynthesis; 3. Biomass turns into gold',
+          '1. All prey animals escape 100% of the time; 2. Plants do not contain any biomass',
+          '1. Respiration creates new biomass from nothing'
+        ],
+        answer: 0,
+        explanation: 'Indigestible parts (faeces), excretory losses (urea/CO₂/H₂O), and respiratory energy expenditure for movement and thermoregulation account for ~90% loss.'
+      },
+      {
+        id: 94,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'In a food chain, the biomass of clover (Trophic Level 1) is 4,500 kg, and the biomass of rabbits eating the clover (Trophic Level 2) is 540 kg. Calculate the percentage efficiency of biomass transfer from Level 1 to Level 2.',
+        options: ['12%', '8.3%', '1.2%', '45%'],
+        answer: 0,
+        explanation: 'Efficiency = (Biomass transferred to next level ÷ Biomass at previous level) × 100 = (540 ÷ 4500) × 100 = 0.12 × 100 = 12%.'
+      },
+      {
+        id: 95,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'What is "FOOD SECURITY", and what are SIX biological factors threatening human food security worldwide (Separate Biology 8461)?',
+        options: [
+          'Having enough food to feed a population; threatened by: 1. Increasing birth rate / human population; 2. Changing diets in developed countries (scarce food resources transported around the world); 3. New pests and pathogens affecting farming; 4. Environmental changes affecting food production (such as famine when rains fail); 5. Cost of agricultural inputs; 6. Conflicts (wars) affecting availability of water or food',
+          'Locking all supermarket doors at night; threatened only by cold winters',
+          'Growing only flowers instead of crops; threatened only by polar bears',
+          'Eating only synthetic vitamins; threatened by high oxygen levels'
+        ],
+        answer: 0,
+        explanation: 'AQA 8461 lists these six biological and socio-environmental threats to global food security.'
+      },
+      {
+        id: 96,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'How can the efficiency of food production from farm animals (such as chickens or pigs) be increased in INTENSIVE FARMING, and what are the main objections (Separate Biology 8461)?',
+        options: [
+          'Efficiency is increased by restricting energy transfer from food animals to the environment—limiting their movement (cages/barns) and controlling the temperature of their surroundings (plus feeding high-protein diets); objections include animal welfare/cruelty concerns, rapid spread of infectious diseases in crowded sheds, and overuse of antibiotics',
+          'Efficiency is increased by letting animals run 20 miles a day in freezing snow; objections are that animals grow too fast',
+          'Efficiency is increased by feeding animals only water; objections are high water bills',
+          'Intensive farming uses no energy and has zero ethical concerns'
+        ],
+        answer: 0,
+        explanation: 'Reducing respiratory energy spent on movement and thermoregulation directs more assimilated biomass into growth, at the cost of animal welfare and disease risk.'
+      },
+      {
+        id: 97,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'From a biomass-efficiency standpoint, why can a given area of farmland feed far more people if humans eat CROPS (such as wheat, soya, or rice) directly rather than feeding those crops to cattle to produce beef?',
+        options: [
+          'Eating crops directly cuts out a trophic level (avoiding the ~90% loss of biomass through animal respiration, movement, heat, faeces, and urine), so ~10 times more food biomass is available to humans',
+          'Wheat contains more fat than beef',
+          'Cows do not eat plants',
+          'Humans cannot digest plant carbohydrates'
+        ],
+        answer: 0,
+        explanation: 'Shorter food chains conserve energy/biomass that would otherwise be lost in livestock metabolism.'
+      },
+      {
+        id: 98,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'Why are ocean FISH STOCKS declining in many parts of the world, and what TWO conservation measures keep fishing SUSTAINABLE (Separate Biology 8461)?',
+        options: [
+          'Declining due to overfishing (catching fish faster than they can breed); kept sustainable by: 1. Controlling NET SIZE (larger mesh sizes allow younger, smaller fish to escape and grow to breeding age); and 2. Fishing QUOTAS (strict limits on the number/mass and species of fish caught)',
+          'Declining because fish are migrating onto land; kept sustainable by using tiny mesh nets to catch every baby fish',
+          'Declining because oceans are drying up; kept sustainable by feeding fish antibiotics',
+          'Declining because whales eat all plankton; kept sustainable by hunting whales'
+        ],
+        answer: 0,
+        explanation: 'Larger net mesh sizes protect juvenile fish until sexual maturity, while quotas cap total harvest within reproductive replacement rates.'
+      },
+      {
+        id: 99,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'What is MYCOPROTEIN, which organism is cultured to produce it, and what conditions are maintained inside the industrial fermenter (Separate Biology 8461)?',
+        options: [
+          'A protein-rich meat substitute suitable for vegetarians; produced by the fungus Fusarium grown on glucose syrup in large fermenters under AEROBIC conditions (sterile air/oxygen supplied), controlled optimum temperature and pH, and stirring paddles; the fungal biomass is then harvested and purified',
+          'A carbohydrate drink made by anaerobic bacteria in pond water',
+          'A type of beef grown from cow stem cells without oxygen',
+          'A vitamin extracted from genetically modified mosquitoes'
+        ],
+        answer: 0,
+        explanation: 'Fusarium venenatum grows rapidly on glucose syrup in aerobic, temperature- and pH-controlled fermenters to yield high-protein, low-fat mycoprotein.'
+      },
+      {
+        id: 100,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'In a Fusarium fermenter producing mycoprotein, why must the fermenter be sterilised with steam before adding the fungus, and why is a cold-water cooling jacket wrapped around the fermenter?',
+        options: [
+          'Steam sterilisation kills competing microorganisms that would contaminate the food or compete for glucose; the cooling jacket removes excess heat released by the aerobic respiration of the growing fungus so its enzymes do not denature',
+          'Steam cools the fermenter down to 0 °C; the water jacket heats the fungus to 100 °C',
+          'Steam adds oxygen gas; the water jacket adds glucose syrup',
+          'Sterilisation kills the Fusarium fungus before growth starts'
+        ],
+        answer: 0,
+        explanation: 'Aseptic conditions prevent contamination, while cooling jackets dissipate metabolic heat from aerobic respiration to maintain optimum enzyme temperature.'
+      },
+      {
+        id: 101,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'How has genetic modification produced "GOLDEN RICE" to improve human nutrition in developing countries (Separate Biology 8461)?',
+        options: [
+          'Genes for making beta-carotene (a precursor used by the human body to make Vitamin A) have been inserted into rice plants, helping prevent Vitamin A deficiency and childhood blindness where rice is the staple diet',
+          'Genes from gold mines were inserted so rice grains contain solid gold metal',
+          'Genes from cows were inserted so rice produces milk',
+          'Genes from bacteria were inserted so rice kills malaria mosquitoes'
+        ],
+        answer: 0,
+        explanation: 'Biofortified Golden Rice synthesises beta-carotene in the endosperm to combat Vitamin A deficiency.'
+      },
+      {
+        id: 102,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'Why does a biogas generator produce methane best at a warm temperature around 35 °C, whereas gas production stops almost completely if the temperature rises above 60 °C?',
+        options: [
+          'Around 35 °C, microbial respiratory enzymes work near their optimum rate; above 60 °C, the enzymes inside the anaerobic bacteria denature (active sites lose their shape), stopping anaerobic respiration',
+          'Methane freezes into a solid below 35 °C',
+          'Above 60 °C, oxygen enters through the steel walls',
+          'Bacteria switch to photosynthesis above 60 °C'
+        ],
+        answer: 0,
+        explanation: 'Anaerobic methanogenic enzymes have a thermal optimum around 35–40 °C and denature at high temperatures.'
+      },
+      {
+        id: 103,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'In an ecological study, the dry biomass of organisms at four trophic levels in a grassland is measured: Grass = 8,000 g/m²; Grasshoppers = 920 g/m²; Frogs = 110 g/m²; Snakes = 12 g/m². Why is DRY biomass measured rather than fresh ("wet") biomass?',
+        options: [
+          'Because the water content of living organisms varies widely depending on hydration/weather, whereas dry mass (after heating in an oven until mass is constant) measures only the true organic biological material',
+          'Because wet organisms are too heavy to put on a balance',
+          'Because heating organisms in an oven creates extra carbon atoms',
+          'Because water contains more energy than fat'
+        ],
+        answer: 0,
+        explanation: 'Fluctuating water content distorts biomass comparisons; drying to constant mass standardises organic matter measurement.'
+      },
+      {
+        id: 104,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'In the grassland above (Grass = 8,000 g/m²; Grasshoppers = 920 g/m²; Frogs = 110 g/m²; Snakes = 12 g/m²), calculate the percentage of biomass transferred from Frogs (Trophic Level 3) to Snakes (Trophic Level 4) to 1 decimal place.',
+        options: ['10.9%', '9.2%', '1.5%', '12.0%'],
+        answer: 0,
+        explanation: 'Percentage transfer = (12 ÷ 110) × 100 = 10.909...% ≈ 10.9%.'
+      },
+      {
+        id: 105,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'Why can a PYRAMID OF NUMBERS occasionally look inverted (narrow at the bottom, e.g. 1 large oak tree supporting 10,000 caterpillars), whereas a PYRAMID OF BIOMASS for the exact same food chain is NEVER inverted?',
+        options: [
+          'Because a single mature oak tree has an enormous total dry mass (biomass) compared to 10,000 tiny caterpillars combined, even though the oak tree counts as only 1 individual organism',
+          'Because caterpillars are heavier than an oak tree',
+          'Because oak trees are secondary consumers',
+          'Because pyramids of biomass ignore producers'
+        ],
+        answer: 0,
+        explanation: 'Pyramids of numbers ignore organism size, whereas pyramids of biomass account for total dry mass at each trophic level.'
+      },
+      {
+        id: 106,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'Why is the slurry (liquid/solid residue) left behind inside a biogas generator after methane has been collected still very useful to farmers?',
+        options: [
+          'It is rich in mineral ions (such as nitrates and phosphates) from decomposed organic waste and can be spread onto fields as an effective agricultural fertiliser',
+          'It can be burned as petrol in tractors',
+          'It kills all weeds and crops in the field',
+          'It is pure distilled drinking water'
+        ],
+        answer: 0,
+        explanation: 'Anaerobic digestion retains mineral nutrients in the digestate slurry, providing a valuable organic fertiliser.'
+      },
+      {
+        id: 107,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'Why are warm-blooded animals (mammals and birds, such as cattle and chickens) generally less efficient at converting food biomass into growth biomass than cold-blooded animals (such as farmed fish)?',
+        options: [
+          'Mammals and birds respire large amounts of glucose to generate heat and maintain a constant high body temperature above their surroundings, whereas cold-blooded fish do not use respiratory energy to heat their bodies',
+          'Fish do not carry out respiration',
+          'Mammals do not digest proteins',
+          'Fish carry out photosynthesis through their scales'
+        ],
+        answer: 0,
+        explanation: 'Endothermy requires substantial metabolic energy expenditure for thermoregulation, leaving less energy for new tissue synthesis.'
+      },
+      {
+        id: 108,
+        topic: 'Decomposition, Trophic Levels & Food Production (Separate)',
+        tier: 'separate',
+        isRequiredPractical: false,
+        q: 'How can modern biotechnology help meet the food demands of a growing global human population sustainably (Separate Biology 8461)?',
+        options: [
+          'By using genetically modified crops to provide more food or food with improved nutritional value (e.g. Golden Rice), and culturing microorganisms like Fusarium in fermenters to produce high-protein mycoprotein efficiently using minimal land',
+          'By clearing all remaining rainforests to graze more beef cattle',
+          'By removing all fishing quotas and using tiny net mesh sizes',
+          'By banning all fertilisers and greenhouses worldwide'
+        ],
+        answer: 0,
+        explanation: 'Biotechnology boosts yield, nutrient density, and high-efficiency protein production with a much smaller land and carbon footprint.'
+      }
+    ];
+
+    // =========================================================================
+    // 2. STATE MANAGEMENT
+    // =========================================================================
+    let state = {
+      studentName: '',
+      studentEmail: '',
+      selectedTier: 'higher', // 'foundation' | 'higher' | 'separate'
+      selectedMode: 'all',    // 'all' | 'practical'
+      selectedCount: 20,
+      activeQuestions: [],
+      currentIndex: 0,
+      score: 0,
+      answeredCurrent: false,
+      userResponses: [],      // { questionObj, chosenIndex, isCorrect }
+      isMissedRetry: false
+    };
+
+    // =========================================================================
+    // 3. FILTERING & POOL HELPERS
+    // =========================================================================
+    function getFilteredPool(tier, mode) {
+      return QUESTION_BANK.filter(item => {
+        let tierMatch = false;
+        if (tier === 'foundation') {
+          tierMatch = item.tier === 'foundation';
+        } else if (tier === 'higher') {
+          tierMatch = item.tier === 'foundation' || item.tier === 'higher';
+        } else {
+          tierMatch = item.tier === 'foundation' || item.tier === 'higher' || item.tier === 'separate';
+        }
+
+        if (!tierMatch) return false;
+        if (mode === 'practical') return item.isRequiredPractical === true;
+        return true;
+      });
+    }
+
+    function shuffleArray(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function prepareQuestionWithShuffledOptions(item) {
+      const indexed = item.options.map((text, idx) => ({
+        text,
+        isCorrect: idx === item.answer
+      }));
+      const shuffled = shuffleArray(indexed);
+      return {
+        ...item,
+        shuffledOptions: shuffled,
+        shuffledAnswerIndex: shuffled.findIndex(o => o.isCorrect)
+      };
+    }
+
+    // =========================================================================
+    // 4. START SCREEN UI INTERACTIONS
+    // =========================================================================
+    function selectTier(tier) {
+      state.selectedTier = tier;
+
+      document.querySelectorAll('.tier-btn').forEach(btn => {
+        const isSelected = btn.dataset.tier === tier;
+        const check = btn.querySelector('.tier-check');
+        if (isSelected) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50');
+          btn.classList.add('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+          check.classList.remove('border-slate-300');
+          check.classList.add('border-teal-600', 'bg-teal-600');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50');
+          btn.classList.remove('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+          check.classList.add('border-slate-300');
+          check.classList.remove('border-teal-600', 'bg-teal-600');
+        }
+      });
+
+      const pracDesc = document.getElementById('modePracticalDesc');
+      if (tier === 'foundation') {
+        pracDesc.textContent = 'Dedicated focus mode: RP9/7 random sampling with quadrats, population estimation maths & systematic transect sampling along abiotic gradients.';
+      } else if (tier === 'separate') {
+        pracDesc.textContent = 'Dedicated focus mode: RP7 quadrats & transects PLUS Separate Biology RP10 investigating the effect of temperature on the rate of decay of fresh milk (Rate = 1/t).';
+      } else {
+        pracDesc.textContent = 'Dedicated focus mode: RP9/7 random sampling with quadrats, population estimation maths, percentage cover & systematic transect sampling along abiotic gradients.';
+      }
+
+      updateSetupLabels();
+    }
+
+    function selectMode(mode) {
+      state.selectedMode = mode;
+
+      const allBtn = document.getElementById('modeAllBtn');
+      const allIcon = document.getElementById('modeAllIcon');
+      const allCheck = document.getElementById('modeAllCheck');
+
+      const pracBtn = document.getElementById('modePracticalBtn');
+      const pracIcon = document.getElementById('modePracticalIcon');
+      const pracCheck = document.getElementById('modePracticalCheck');
+
+      if (mode === 'all') {
+        allBtn.classList.remove('border-slate-200', 'bg-slate-50');
+        allBtn.classList.add('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+        allIcon.classList.remove('bg-slate-200', 'text-slate-700');
+        allIcon.classList.add('bg-teal-600', 'text-white');
+        allCheck.classList.remove('hidden');
+
+        pracBtn.classList.remove('border-amber-500', 'bg-amber-50', 'shadow-sm');
+        pracBtn.classList.add('border-slate-200', 'bg-amber-50/40');
+        pracIcon.classList.remove('bg-amber-500', 'text-white');
+        pracIcon.classList.add('bg-amber-100', 'text-amber-800');
+        pracCheck.classList.add('hidden');
+      } else {
+        pracBtn.classList.remove('border-slate-200', 'bg-amber-50/40');
+        pracBtn.classList.add('border-amber-500', 'bg-amber-50', 'shadow-sm');
+        pracIcon.classList.remove('bg-amber-100', 'text-amber-800');
+        pracIcon.classList.add('bg-amber-500', 'text-white');
+        pracCheck.classList.remove('hidden');
+
+        allBtn.classList.remove('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+        allBtn.classList.add('border-slate-200', 'bg-slate-50');
+        allIcon.classList.remove('bg-teal-600', 'text-white');
+        allIcon.classList.add('bg-slate-200', 'text-slate-700');
+        allCheck.classList.add('hidden');
+      }
+
+      updateSetupLabels();
+    }
+
+    function selectCount(count) {
+      state.selectedCount = count;
+      document.querySelectorAll('.count-btn').forEach(btn => {
+        const btnCount = parseInt(btn.dataset.count, 10);
+        if (btnCount === count) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-800', 'hover:border-teal-400');
+          btn.classList.add('border-teal-600', 'bg-teal-600', 'text-white', 'shadow-sm');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-800', 'hover:border-teal-400');
+          btn.classList.remove('border-teal-600', 'bg-teal-600', 'text-white', 'shadow-sm');
+        }
+      });
+      updateSetupLabels();
+    }
+
+    function updateSetupLabels() {
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const tierBadges = {
+        foundation: 'Foundation Tier Selected',
+        higher: 'Higher Tier Selected',
+        separate: 'Separate Biology (8461) Selected'
+      };
+
+      document.getElementById('tierCountHint').textContent = tierBadges[state.selectedTier];
+
+      const pool = getFilteredPool(state.selectedTier, state.selectedMode);
+      const poolText = document.getElementById('poolAvailabilityText');
+      const cappedBadge = document.getElementById('cappedPoolBadge');
+
+      if (state.selectedMode === 'practical') {
+        poolText.textContent = `${pool.length} unique Required Practical questions available`;
+      } else {
+        poolText.textContent = `${pool.length} unique questions available for ${tierNames[state.selectedTier]}`;
+      }
+
+      const actualCount = Math.min(state.selectedCount, pool.length);
+      if (state.selectedCount > pool.length) {
+        cappedBadge.classList.remove('hidden');
+        cappedBadge.textContent = `Using all ${actualCount} available`;
+      } else {
+        cappedBadge.classList.add('hidden');
+      }
+
+      const startLabel = document.getElementById('startBtnLabel');
+      if (state.selectedMode === 'practical') {
+        startLabel.textContent = `Start Required Practicals Quiz (${actualCount} Questions)`;
+      } else {
+        startLabel.textContent = `Start ${tierNames[state.selectedTier]} Quiz (${actualCount} Questions)`;
+      }
+    }
+
+    function clearValidationError() {
+      const input = document.getElementById('studentNameInput');
+      const alertBox = document.getElementById('validationAlert');
+      input.classList.remove('border-rose-500', 'bg-rose-50/40');
+      alertBox.classList.add('hidden');
+    }
+
+    function handleStartQuiz(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('studentNameInput');
+      const emailInput = document.getElementById('studentEmailInput');
+      const nameVal = nameInput.value.trim();
+
+      if (!nameVal) {
+        nameInput.classList.add('border-rose-500', 'bg-rose-50/40');
+        document.getElementById('validationAlert').classList.remove('hidden');
+        nameInput.focus();
+        return;
+      }
+
+      state.studentName = nameVal;
+      state.studentEmail = emailInput.value.trim();
+      state.isMissedRetry = false;
+
+      const pool = getFilteredPool(state.selectedTier, state.selectedMode);
+      const shuffledPool = shuffleArray(pool);
+      const chosenSlice = shuffledPool.slice(0, Math.min(state.selectedCount, shuffledPool.length));
+
+      launchQuizSession(chosenSlice);
+    }
+
+    // =========================================================================
+    // 5. QUIZ ENGINE
+    // =========================================================================
+    function launchQuizSession(rawQuestions) {
+      state.activeQuestions = rawQuestions.map(prepareQuestionWithShuffledOptions);
+      state.currentIndex = 0;
+      state.score = 0;
+      state.answeredCurrent = false;
+      state.userResponses = [];
+
+      document.getElementById('headerStudentName').textContent = state.studentName;
+      document.getElementById('headerControls').classList.remove('hidden');
+
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const item = state.activeQuestions[state.currentIndex];
+      const total = state.activeQuestions.length;
+      const qNum = state.currentIndex + 1;
+      state.answeredCurrent = false;
+
+      const tierLabels = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const tierBadge = document.getElementById('quizTierBadge');
+      tierBadge.textContent = state.isMissedRetry ? 'Missed Questions Drill' : tierLabels[state.selectedTier];
+
+      document.getElementById('quizTopicBadge').textContent = item.topic;
+
+      const focusBadge = document.getElementById('quizFocusBadge');
+      if (item.isRequiredPractical) {
+        focusBadge.classList.remove('hidden');
+      } else {
+        focusBadge.classList.add('hidden');
+      }
+
+      document.getElementById('questionCounterText').textContent = `Question ${qNum} of ${total}`;
+      document.getElementById('liveScoreText').textContent = state.score;
+      const pct = Math.round(((qNum - 1) / total) * 100);
+      document.getElementById('quizProgressBar').style.width = `${Math.max(4, pct)}%`;
+
+      document.getElementById('questionPrompt').textContent = item.q;
+      document.getElementById('feedbackBox').classList.add('hidden');
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      item.shuffledOptions.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'option-card w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-teal-50/50 hover:border-teal-500 flex items-start gap-3.5 focus:outline-none';
+        btn.innerHTML = `
+          <span class="option-letter w-7 h-7 rounded-lg bg-white border border-slate-300 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">
+            ${letters[idx]}
+          </span>
+          <span class="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+            ${opt.text}
+          </span>
+        `;
+        btn.onclick = () => handleAnswerSelection(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    function handleAnswerSelection(chosenIdx) {
+      if (state.answeredCurrent) return;
+      state.answeredCurrent = true;
+
+      const item = state.activeQuestions[state.currentIndex];
+      const isCorrect = chosenIdx === item.shuffledAnswerIndex;
+
+      if (isCorrect) {
+        state.score++;
+        document.getElementById('liveScoreText').textContent = state.score;
+      }
+
+      state.userResponses.push({
+        questionObj: item,
+        chosenIndex: chosenIdx,
+        isCorrect: isCorrect
+      });
+
+      const optionBtns = document.querySelectorAll('#optionsContainer .option-card');
+      optionBtns.forEach((btn, idx) => {
+        btn.disabled = true;
+        const letterBadge = btn.querySelector('.option-letter');
+        btn.classList.remove('hover:bg-teal-50/50', 'hover:border-teal-500', 'bg-slate-50', 'border-slate-200');
+
+        if (idx === item.shuffledAnswerIndex) {
+          btn.classList.add('bg-emerald-50', 'border-emerald-500');
+          letterBadge.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
+          letterBadge.classList.add('bg-emerald-600', 'border-emerald-600', 'text-white');
+        } else if (idx === chosenIdx && !isCorrect) {
+          btn.classList.add('bg-rose-50', 'border-rose-500');
+          letterBadge.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
+          letterBadge.classList.add('bg-rose-600', 'border-rose-600', 'text-white');
+        } else {
+          btn.classList.add('bg-slate-50', 'border-slate-200', 'opacity-60');
+        }
+      });
+
+      const feedbackBox = document.getElementById('feedbackBox');
+      const feedbackIcon = document.getElementById('feedbackIcon');
+      const feedbackHeading = document.getElementById('feedbackHeading');
+      const feedbackExplanation = document.getElementById('feedbackExplanation');
+
+      feedbackBox.classList.remove('hidden', 'bg-emerald-50/70', 'border-emerald-300', 'bg-rose-50/70', 'border-rose-300');
+      feedbackIcon.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+
+      if (isCorrect) {
+        feedbackBox.classList.add('bg-emerald-50/70', 'border-emerald-300');
+        feedbackIcon.classList.add('bg-emerald-600', 'text-white');
+        feedbackIcon.textContent = '✓';
+        feedbackHeading.textContent = 'Correct! Mark Awarded';
+        feedbackHeading.className = 'font-extrabold text-base text-emerald-900';
+        feedbackExplanation.className = 'text-sm mt-1.5 leading-relaxed text-emerald-900/90';
+      } else {
+        feedbackBox.classList.add('bg-rose-50/70', 'border-rose-300');
+        feedbackIcon.classList.add('bg-rose-600', 'text-white');
+        feedbackIcon.textContent = '✕';
+        feedbackHeading.textContent = 'Incorrect — Review AQA Examiner Note';
+        feedbackHeading.className = 'font-extrabold text-base text-rose-900';
+        feedbackExplanation.className = 'text-sm mt-1.5 leading-relaxed text-rose-900/90';
+      }
+
+      feedbackExplanation.textContent = item.explanation;
+
+      const isLast = state.currentIndex === state.activeQuestions.length - 1;
+      document.getElementById('nextBtnText').textContent = isLast ? 'View Diagnostic Report' : 'Next Question';
+
+      const total = state.activeQuestions.length;
+      const pct = Math.round(((state.currentIndex + 1) / total) * 100);
+      document.getElementById('quizProgressBar').style.width = `${pct}%`;
+    }
+
+    function handleNextQuestion() {
+      if (state.currentIndex < state.activeQuestions.length - 1) {
+        state.currentIndex++;
+        renderCurrentQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showDiagnosticReport();
+      }
+    }
+
+    // =========================================================================
+    // 6. DIAGNOSTIC REPORT & EXPORT
+    // =========================================================================
+    function estimateGcseGrade(pct, tier) {
+      if (tier === 'foundation') {
+        if (pct >= 80) return 'Grade 5';
+        if (pct >= 65) return 'Grade 4';
+        if (pct >= 50) return 'Grade 3';
+        if (pct >= 35) return 'Grade 2';
+        return 'Grade 1';
+      } else {
+        if (pct >= 85) return 'Grade 9';
+        if (pct >= 75) return 'Grade 8';
+        if (pct >= 65) return 'Grade 7';
+        if (pct >= 55) return 'Grade 6';
+        if (pct >= 45) return 'Grade 5';
+        if (pct >= 35) return 'Grade 4';
+        return 'Grade 3';
+      }
+    }
+
+    function showDiagnosticReport() {
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const total = state.activeQuestions.length;
+      const pct = Math.round((state.score / total) * 100);
+
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const modeName = state.isMissedRetry
+        ? 'Targeted Missed Questions Retry'
+        : (state.selectedMode === 'practical' ? 'Required Practicals Only' : 'All Ecology Topics');
+
+      document.getElementById('reportStudentTitle').textContent = `Diagnostic Report: ${state.studentName}`;
+      document.getElementById('reportMetaSubtitle').textContent = `${tierNames[state.selectedTier]} • ${modeName}`;
+      document.getElementById('reportPercentage').textContent = `${pct}%`;
+      document.getElementById('reportFraction').textContent = `${state.score} / ${total} Correct`;
+      document.getElementById('reportGradeBadge').textContent = estimateGcseGrade(pct, state.selectedTier);
+
+      const missedItems = state.userResponses.filter(r => !r.isCorrect);
+      const retryBtn = document.getElementById('retryMissedBtn');
+      if (missedItems.length > 0) {
+        retryBtn.classList.remove('hidden');
+        document.getElementById('missedCountLabel').textContent = missedItems.length;
+      } else {
+        retryBtn.classList.add('hidden');
+      }
+
+      const topicMap = {};
+      state.userResponses.forEach(res => {
+        const t = res.questionObj.topic;
+        if (!topicMap[t]) {
+          topicMap[t] = { correct: 0, total: 0 };
+        }
+        topicMap[t].total++;
+        if (res.isCorrect) topicMap[t].correct++;
+      });
+
+      const breakdownContainer = document.getElementById('topicBreakdownContainer');
+      breakdownContainer.innerHTML = '';
+
+      Object.entries(topicMap).forEach(([topicName, stats]) => {
+        const topicPct = Math.round((stats.correct / stats.total) * 100);
+        let barColor = 'bg-emerald-500';
+        let badgeStyle = 'bg-emerald-100 text-emerald-800';
+        let statusLabel = 'Strong';
+
+        if (topicPct < 50) {
+          barColor = 'bg-rose-500';
+          badgeStyle = 'bg-rose-100 text-rose-800';
+          statusLabel = 'Revise Priority';
+        } else if (topicPct < 70) {
+          barColor = 'bg-amber-500';
+          badgeStyle = 'bg-amber-100 text-amber-800';
+          statusLabel = 'Needs Revision';
+        }
+
+        const row = document.createElement('div');
+        row.className = 'p-4 rounded-xl bg-slate-50 border border-slate-200';
+        row.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="font-bold text-sm text-slate-900">${topicName}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${badgeStyle}">${statusLabel}</span>
+              <span class="text-xs font-extrabold text-slate-700">${stats.correct}/${stats.total} (${topicPct}%)</span>
+            </div>
+          </div>
+          <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+            <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${topicPct}%;"></div>
+          </div>
+        `;
+        breakdownContainer.appendChild(row);
+      });
+
+      const reviewList = document.getElementById('questionReviewList');
+      reviewList.innerHTML = '';
+
+      state.userResponses.forEach((res, idx) => {
+        const item = res.questionObj;
+        const chosenText = item.shuffledOptions[res.chosenIndex].text;
+        const correctText = item.shuffledOptions[item.shuffledAnswerIndex].text;
+
+        const card = document.createElement('div');
+        card.className = `p-4 sm:p-5 rounded-xl border-2 ${res.isCorrect ? 'border-emerald-200 bg-emerald-50/30' : 'border-rose-200 bg-rose-50/30'}`;
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider ${res.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              Question ${idx + 1} &bull; ${res.isCorrect ? 'Correct' : 'Incorrect'}
+            </span>
+            <span class="text-xs font-semibold text-slate-500">${item.topic}</span>
+          </div>
+          <p class="font-bold text-sm sm:text-base text-slate-900 mb-3">${item.q}</p>
+          <div class="space-y-1.5 text-xs sm:text-sm">
+            <p class="${res.isCorrect ? 'text-emerald-800 font-semibold' : 'text-rose-800 font-semibold'}">
+              Your answer: ${chosenText}
+            </p>
+            ${!res.isCorrect ? `<p class="text-emerald-800 font-bold">Correct answer: ${correctText}</p>` : ''}
+            <p class="text-slate-600 pt-1.5 border-t border-slate-200/80 mt-2">
+              <strong class="text-slate-800">Mark Scheme Note:</strong> ${item.explanation}
+            </p>
+          </div>
+        `;
+        reviewList.appendChild(card);
+      });
+
+      const summaryText = buildPlainTextReport();
+      const subject = encodeURIComponent(`AQA GCSE Ecology Quiz Results — ${state.studentName} (${pct}%)`);
+      const body = encodeURIComponent(summaryText);
+      const recipient = state.studentEmail ? encodeURIComponent(state.studentEmail) : '';
+      document.getElementById('emailResultsLink').href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+
+    function buildPlainTextReport() {
+      const total = state.activeQuestions.length;
+      const pct = Math.round((state.score / total) * 100);
+      const estGrade = estimateGcseGrade(pct, state.selectedTier);
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const modeName = state.selectedMode === 'practical'
+        ? 'Required Practicals Only'
+        : 'All Ecology Topics';
+
+      const topicMap = {};
+      state.userResponses.forEach(res => {
+        const t = res.questionObj.topic;
+        if (!topicMap[t]) topicMap[t] = { correct: 0, total: 0 };
+        topicMap[t].total++;
+        if (res.isCorrect) topicMap[t].correct++;
+      });
+
+      const breakdownLines = Object.entries(topicMap)
+        .map(([t, s]) => `- ${t}: ${s.correct}/${s.total} (${Math.round((s.correct / s.total) * 100)}%)`)
+        .join('\n');
+
+      return [
+        `Mr Leek Science — AQA GCSE Ecology Revision Quiz`,
+        `Student: ${state.studentName}`,
+        `Pathway: ${tierNames[state.selectedTier]} | Focus: ${modeName}`,
+        `Overall Score: ${state.score} / ${total} (${pct}% — ${estGrade})`,
+        ``,
+        `Topic Breakdown:`,
+        breakdownLines
+      ].join('\n');
+    }
+
+    function copyResultsSummary() {
+      const text = buildPlainTextReport();
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      tempArea.style.position = 'fixed';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        const label = document.getElementById('copyBtnLabel');
+        label.textContent = 'Copied to Clipboard ✓';
+        setTimeout(() => {
+          label.textContent = 'Copy Results Summary';
+        }, 2500);
+      } catch (err) {
+        // Fallback if blocked
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    function startMissedQuestionsQuiz() {
+      const missedRaw = state.userResponses
+        .filter(r => !r.isCorrect)
+        .map(r => r.questionObj);
+
+      if (missedRaw.length === 0) return;
+      state.isMissedRetry = true;
+      launchQuizSession(shuffleArray(missedRaw));
+    }
+
+    // =========================================================================
+    // 7. NAVIGATION & MODAL HELPERS
+    // =========================================================================
+    function confirmReturnHome() {
+      const quizVisible = !document.getElementById('quizScreen').classList.contains('hidden');
+      if (quizVisible && state.userResponses.length > 0) {
+        document.getElementById('confirmModal').classList.remove('hidden');
+      } else {
+        returnToMenu();
+      }
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function returnToMenu() {
+      closeConfirmModal();
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('headerControls').classList.add('hidden');
+      document.getElementById('startScreen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      selectTier('higher');
+      selectMode('all');
+      selectCount(20);
+    });
+  </script>
+</body>
+</html>
